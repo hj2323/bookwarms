@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybook.mapper.MemberMapper">
+
+<resultMap type="com.mybook.dto.MemberDTO" id="memberMap">
+	<id property="userid" column="userid"/>
+	<result property="userid" column="userid"/>
+	<result property="userpw" column="userpw"/>
+	<result property="username" column="username"/>
+	<result property="useremail" column="useremail"/>
+	<result property="address1" column="address1"/>
+	<result property="address2" column="address2"/>
+	<result property="regDate" column="regdate"/>
+	<result property="updateDate" column="updatedate"/>
+	<collection property="authList" resultMap="authMap"/>
+</resultMap>
+<resultMap type="com.mybook.dto.AuthDTO" id="authMap">
+	<result property = "userid" column="userid"/>
+	<result property="auth" column="auth"/>
+</resultMap>
+<select id="read" resultMap="memberMap">
+	select 
+	mem.userid, userpw, username, regdate, updatedate,auth
+	from member mem
+	left outer join tbl_auth   auth on
+	mem.userid= auth.userid
+	where mem.userid=#{userid}
+</select>
+<sql id = "search">
+<where>
+	<if test="word!=null and field=='username'">
+		username like CONCAT ('%',#{word},'%')
+	</if>
+	<if test="word!=null and field=='userid'">
+		userid like CONCAT ('%',#{word},'%')
+	</if>
+</where>
+
+</sql>
+
+<insert id="memberJoin">
+insert into member(userid, userpw, username, useremail, tel, address1, address2, regdate, updatedate)
+ values(#{userid},#{userpw},#{username},#{useremail}, #{tel}, #{address1}, #{address2}, now(),now())
+</insert>
+
+<insert id="authJoin">
+insert into tbl_auth(userid, auth) values(#{userid},#{auth})
+
+</insert>
+<select id="findById" resultType="com.mybook.dto.MemberDTO">
+select * from member where userid=#{userid}
+</select>
+<update id="update">
+update member set userpw=#{userpw}, useremail=#{useremail}, address1=#{address1}, 
+address2=#{address2}, tel=#{tel}, username=#{username}
+where userid=#{userid}
+</update>
+
+<delete id="memberDelete">
+delete from  member where userid=#{userid}
+</delete>
+<delete id="authDelete">
+delete from  tbl_auth where userid=#{userid}
+</delete>
+
+<select id="loginCheck" resultType="com.mybook.dto.MemberDTO">
+select * from member where userid=#{userid}
+</select>
+<!--전체카운트( 검색포함) -->
+<select id="getCount" parameterType="java.util.Map" resultType="Integer">
+select count(*) from member
+<include refid="search"/>
+</select >
+
+<select id="findAll" parameterType="java.util.Map" resultType="com.mybook.dto.MemberDTO">
+select * from member
+<include refid="search"/>
+limit #{startRow}, #{pageSize}
+<!-- limit [시작행번호],[가지고올 글갯수] -->
+</select  >
+
+</mapper>
