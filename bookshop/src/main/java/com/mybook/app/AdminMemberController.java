@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,11 @@ public class AdminMemberController {
 	
 	
 	@GetMapping("a_member")
-	public String a_notice(Model model, String field, String word, String pageNum) {
+	public String a_notice(Model model, String field, String word, String pageNum,  HttpSession session) {
+		
+		String sessid = (String) session.getAttribute("sessid");
+		if("admin".equals(sessid)) {
+		
 		pageNum = pageNum==null?"1":pageNum;
 		int page=Integer.parseInt(pageNum);
 		
@@ -38,7 +43,7 @@ public class AdminMemberController {
 		int cnt = mservice.getCount(hm);
 		int totalCount = cnt;
 		
-		//페이징
+		//�럹�씠吏�
 		int pageSize=5;
 		int pageBlock= 3;
 		int pageCount = (int) Math.ceil((double) totalCount / pageSize);
@@ -48,7 +53,7 @@ public class AdminMemberController {
 		//4/3*3+1 ==> 4
 		//5/3*3+1 ==> 5
 		
-		//page가 pageBlock의 배수 즉, 3, 6, 9, 12....일때 처리 해주는 부분이 - (page % pageBlock == 0 ? 1 : 0)
+		//page媛� pageBlock�쓽 諛곗닔 利�, 3, 6, 9, 12....�씪�븣 泥섎━ �빐二쇰뒗 遺�遺꾩씠 - (page % pageBlock == 0 ? 1 : 0)
 				
 		int endPage = startPage + pageBlock - 1;
 		if(endPage > pageCount) {
@@ -63,7 +68,7 @@ public class AdminMemberController {
 		
 		pageDto.setPageNum(pageNum);
 		
-		//startRow 맨위에 첫번째 글에 인덱스
+		//startRow 留⑥쐞�뿉 泥ル쾲吏� 湲��뿉 �씤�뜳�뒪
 		int startRow =(page-1)*pageSize;
 		hm.put("startRow",startRow);
 		hm.put("pageSize", pageSize);
@@ -75,6 +80,11 @@ public class AdminMemberController {
 		model.addAttribute("pageDto",pageDto);
 		
 		return "/admin/a_member/a_member";
+		
+		}else {
+			return "redirect:/";
+		}
+		
 	}
 	
 	@GetMapping("viewPath/{userid}")
@@ -84,7 +94,7 @@ public class AdminMemberController {
 		return "/admin/a_member/a_memberView";
 	}
 	
-	// 수정
+	// �닔�젙
 	@PostMapping("update")
 	public String update(@ModelAttribute MemberDTO member, HttpServletRequest request) {
 		mservice.update(member);

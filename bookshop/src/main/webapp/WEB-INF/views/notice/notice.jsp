@@ -3,40 +3,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>â¨Bookwarms</title>
+  <title>✨Bookwarms</title>
   <%--head영역 --%>
 <%@include file="../includes/header.jsp"%>
 
 
 
 <div class="container" style="margin-top:30px">
-    <h3>ì´ì©ìë´</h3>
+    <h3>이용안내</h3>
     <table class="table">
         <thead>
           <tr>
             <th>No.</th>
-            <th style="width:60%;">ê¸ ì ëª©</th>
-            <th>ë ì§</th>
-            <th>ì¡°íì</th>
+            <th style="width:60%;">글 제목</th>
+            <th>날짜</th>
+            <th>조회수</th>
             
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>1</td>
-            <td>êµí/íë¶ ìë´</td>
+            <td>교환/환불 안내</td>
             <td>2021.01.01</td>
             <td>1</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>ì ìì¬í­</td>
+            <td>유의사항</td>
             <td>2021.01.01</td>
             <td>1</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>ë§¤ì¥ìë´</td>
+            <td>매장안내</td>
             <td>2021.01.01</td>
             <td>1</td>
           </tr>
@@ -52,9 +52,8 @@
       </ul>
 </div>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <p><a href="#">ð¼ð¼ð¼</a></p>
-  </div>
+
+<%@include file="../includes/footer.jsp"%>
 
 </body>
 </html>

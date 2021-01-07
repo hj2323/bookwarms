@@ -3,5 +3,30 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybook.mapper.QnaMapper">
+<insert id="insert">
+insert into qna(q_subject, q_content, q_writer, q_regdate, q_ip)
+ values(#{q_subject},#{q_content},#{q_writer},now(), #{q_ip})
+</insert>
 
+<select id="getCount" parameterType="java.util.Map" resultType="Integer">
+select count(*) from qna
+</select >
+
+<select id="findAll" parameterType="java.util.Map" resultType="com.mybook.dto.Qna">
+select * from qna order by q_no desc
+limit #{startRow}, #{pageSize}
+<!-- limit [시작행번호],[가지고올 글갯수] -->
+</select  >
+<select id="findByQno" resultType="com.mybook.dto.Qna">
+select * from qna where q_no=#{q_no}
+</select>
+
+<update id="update">
+update qna set q_subject=#{q_subject}, q_content=#{q_content}
+where q_no=#{q_no}
+</update>
+
+<delete id="delete">
+delete from qna where q_no=#{q_no}
+</delete>
 </mapper>

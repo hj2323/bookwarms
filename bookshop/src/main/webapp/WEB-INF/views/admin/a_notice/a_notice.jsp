@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>â¨Bookwarms</title>
+  <title>✨Bookwarms</title>
     <%--head영역 --%>
 <%@include file="../../includes/header.jsp"%>
       
@@ -15,7 +15,7 @@
     <%--nav영역 --%>
 <%@include file="../nav.jsp"%>
     <div class="col-sm-8">
-      <h2>ì´ì©ìë´ê´ë¦¬</h2>
+     <h2>이용안내관리</h2>
       <h5>Title description, Dec 7, 2017</h5>
       <table class="table table-bordered">
         <thead>
@@ -48,9 +48,7 @@
   </div>
 </div>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <p><a href="#">ð¼ð¼ð¼</a></p>
-</div>
+<%@include file="../../includes/footer.jsp"%>
 
 </body>
 </html>

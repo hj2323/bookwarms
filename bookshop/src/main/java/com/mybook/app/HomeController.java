@@ -46,11 +46,6 @@ public class HomeController {
 		log.info("/member/login");
 	}
 	
-	@GetMapping("customLogout")
-	public void logout() {
-		
-	}
-	
 	@GetMapping("notice/notice")
 	public String notice() {
 		return "notice/notice";

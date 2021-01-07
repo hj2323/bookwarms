@@ -3,25 +3,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>â¨Bookwarms</title>
+ <title>✨Bookwarms</title>
    <%--head영역 --%>
 <%@include file="../includes/header.jsp"%>
 
 
 
 <div class="container" style="margin-top:30px">
-    <h1>ì¥ë°êµ¬ë</h1>
+   <h1>장바구니</h1>
     <table class="table">
         <thead>
           <tr>
              <th style="width:15%;"><div class="form-check-inline">
                 <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" value="">ì ì²´ì í
+                  <input type="checkbox" class="form-check-input" value="">전체선택
                 </label>
               </div></th>
-             <th>ìíì ë³´</th>
-             <th>ìíê¸ì¡</th>
-             <th>ë°°ì¡ë¹</th>
+             <th>상품정보</th>
+             <th>상품금액</th>
+             <th>배송비</th>
             
             
           </tr>
@@ -29,10 +29,10 @@
         <tbody>
           <tr>
             <td><input type="checkbox" class="form-check-input" value=""></td>
-            <td><img src="https://images.unsplash.com/photo-1549122728-f519709caa9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80" width="300px;"><p>ë¬ë¬êµ¬í¸ ê¿ ë°±íì </p>
-            <p>ì´ë¯¸ì ì </p>
+            <td><img src="https://images.unsplash.com/photo-1549122728-f519709caa9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80" width="300px;"><p>달러구트 꿈 백화점</p>
+            <p>이미예 저</p>
         <p> <div class="form-group">
-            <label for="sel1">ìë:</label>
+            <label for="sel1">수량:</label>
             <select class="form-control" id="sel1">
               <option>1</option>
               <option>2</option>
@@ -46,15 +46,15 @@
               <option>10</option>
             </select>
           </div></p></td>
-            <td>	12,420ì</td>
-            <td colspan="2">ë¬´ë£</td>
+            <td>	12,420원</td>
+            <td colspan="2">무료</td>
           </tr>
           <tr>
             <td><input type="checkbox" class="form-check-input" value=""></td>
-            <td><img src="https://images.unsplash.com/photo-1549122728-f519709caa9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80" width="300px;"><p>ë¬ë¬êµ¬í¸ ê¿ ë°±íì </p>
-            <p>ì´ë¯¸ì ì </p>
+            <td><img src="https://images.unsplash.com/photo-1549122728-f519709caa9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80" width="300px;"><p>달러구트 꿈 백화점</p>
+            <p>이미예 저</p>
         <p> <div class="form-group">
-            <label for="sel1">ìë:</label>
+            <label for="sel1">수량:</label>
             <select class="form-control" id="sel1">
               <option>1</option>
               <option>2</option>
@@ -68,31 +68,29 @@
               <option>10</option>
             </select>
           </div></p></td>
-            <td>	12,420ì</td>
-            <td colspan="2">ë¬´ë£</td>
+            <td>	12,420원</td>
+            <td colspan="2">무료</td>
           </tr>
           <tr>
-            <td colspan="4"><b>ìíê°ê²© 24,000ì + ë°°ì¡ë¹ ë¬´ë£ = ì£¼ë¬¸ê¸ì¡ 24,000ì</b></td>
+            <td colspan="4"><b>상품가격 24,000원 + 배송비 무료 = 주문금액 24,000원</b></td>
             
           </tr>
           
         </tbody>
       </table>
       <hr>
-      <button type="button" class="btn btn-warning">ì íì­ì </button>
-      <div class="total">ì´ ìíê°ê²© 100,000ì + ì´ ë°°ì¡ë¹ 0ì = ì´ ì£¼ë¬¸ê¸ì¡ 100,000ì</div>
+      <button type="button" class="btn btn-warning">선택삭제</button>
+      <div class="total">총 상품가격 100,000원 + 총 배송비 0원 = 총 주문금액 100,000원</div>
 
       <div class="buttons">
-        <button type="button" class="btn btn-primary">ê³ìì¼ííê¸°</button>
-        <button type="button" class="btn btn-primary">êµ¬ë§¤íê¸°</button>
+        <button type="button" class="btn btn-primary">계속쇼핑하기</button>
+        <button type="button" class="btn btn-primary">구매하기</button>
 
       </div>
 
 </div>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <p><a href="#">ð¼ð¼ð¼</a></p>
-  </div>
+<%@include file="../includes/footer.jsp"%>
 
 </body>
 </html>

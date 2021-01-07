@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>â¨Bookwarms</title>
+  <title>✨Bookwarms</title>
  <%--head영역 --%>
 <%@include file="../includes/header.jsp"%>
 
@@ -15,42 +16,64 @@
        <thead>
          <tr>
            <th>No.</th>
-           <th style="width:60%;">ê¸ ì ëª©</th>
-           <th>ìì±ì</th>
-           <th>ë ì§</th>
+           <th style="width:60%;">글 제목</th>
+           <th>작성자</th>
+           <th>날짜</th>
            
          </tr>
        </thead>
        <tbody>
+      
+        <c:forEach items="${qnalist}" var="qna">
          <tr>
-           <td>1</td>
-           <td>ë¬¸ìëë¦½ëë¤</td>
-           <td>ì´ãã</td>
-           <td>2021.01.01</td>
+           <td>${qna.q_no }</td>
+           <td><a href="viewPath/${qna.q_no}">${qna.q_subject }</a></td>
+           <td>${qna.q_writer }</td>
+           <td><fmt:formatDate value="${qna.q_regdate}" pattern="yyyy.MM.dd"/>
+          </td>
          </tr>
-         <tr>
-           <td>2</td>
-           <td><span class="badge badge-info">ëµë³</span>ë¬¸ìëë¦½ëë¤</td>
-           <td>ë´ë¹ì</td>
-           <td>2021.01.01</td>
-         </tr>
-         <tr>
-          <td>1</td>
-          <td>ë¬¸ìëë¦½ëë¤</td>
-          <td>ì´ãã</td>
-          <td>2021.01.01</td>
-         </tr>
+         </c:forEach>
        </tbody>
      </table>
 
-     <ul class="pagination">
-       <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-       <li class="page-item"><a class="page-link" href="#">1</a></li>
-       <li class="page-item"><a class="page-link" href="#">2</a></li>
-       <li class="page-item"><a class="page-link" href="#">3</a></li>
-       <li class="page-item"><a class="page-link" href="#">Next</a></li>
-     </ul>
+    <%--페이징 --%>
+					<ul class="pagination">
+					<c:if test="${pageDto.totalCount gt 0 }">
+						<%-- [이전] 출력 --%>
+						<c:if test="${ pageDto.startPage gt pageDto.pageBlock }">
+							<li><a href="qna?pageNum=${pageDto.startPage - pageDto.pageBlock}">Previous</a></li>
+						</c:if>
+						<!-- 페이지번호 -->
+						<c:forEach var="i" begin="${pageDto.startPage}"
+						end="${pageDto.endPage}" step="1">
+						<c:choose>
+							<c:when test="${pageScope.i eq requestScope.pageNum}">
+									<li class="page-item"><a class="page-link" href="/qna/qna?pageNum=${i}">${i}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a class="page-link" href="/qna/qna?pageNum=${i}">${i}</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+						<!-- 다음 -->
+						<c:if test="${pageDto.endPage lt pageDto.pageCount }">
+						<li><a href="qna?pageNum=${pageDto.startPage + pageDto.pageBlock}">Next</a></li>
+						</c:if>
+					</c:if>
+					</ul>
+     <c:choose>
+			<c:when test="${empty sessionScope.sessid}">
+				<!-- 세션이 없을때 -->
+				
+			</c:when>
+			<c:otherwise>
+				<!-- 세션이 있을때 -->
+				 <button type="button" onclick="location.href='/qna/qna_insert'" class="btn btn-primary">글쓰기</button>
+			</c:otherwise>
+		</c:choose>
+    
 </div>
+
 
 <%@include file="../includes/footer.jsp"%>
 

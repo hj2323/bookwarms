@@ -43,7 +43,7 @@
       <div class="form-group">
         <label for="usr">전화번호:</label>
         <input type="text" class="form-control" id="usr" name="tel">
-        <p>"-"ë¥¼ ëº¸ íìì¼ë¡ ìë ¥í´ì£¼ì¸ì ì)01012345678</p>
+        <p>"-"를 뺸 형식으로 입력해주세요 예)01012345678</p>
       </div>
       <select name="auth">
   <option value="ADMIN">관리자</option>
@@ -53,9 +53,7 @@
       <button type="submit" class="btn btn-outline-dark btn-lg">Submit</button>
 	</form>
 </div>
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <p><a href="#">ð¼ð¼ð¼</a></p>
-  </div>
+<%@include file="../includes/footer.jsp"%>
 
 </body>
 </html>
