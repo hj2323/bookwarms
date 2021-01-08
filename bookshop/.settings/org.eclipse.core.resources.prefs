@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/mybook/app/AdminMemberController.java=UTF-8
+encoding//src/main/java/com/mybook/app/QnaReplyController.java=UTF-8
+encoding//src/main/java/com/mybook/dto/CommentDTO.java=UTF-8
 encoding//src/main/java/com/mybook/service/MemberService.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/a_member/a_member.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/a_productcategory/a_productcategory.jsp=UTF-8

@@ -15,5 +15,6 @@ public class Qna {
 	private int q_re_ref;
 	private int q_re_lev;
 	private int q_re_seq;
+	private int replyCnt;
 	
 }

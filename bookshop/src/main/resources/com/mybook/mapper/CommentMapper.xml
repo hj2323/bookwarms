@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybook.mapper.CommentMapper">
+
+<!-- 댓글추가 -->
+<insert id = "insert" parameterType="com.mybook.dto.CommentDTO">
+insert into qna_reply(qreply_username, qreply_content, qreply_regdate, q_no) values(#{qreply_username} ,#{qreply_content}, now(), #{q_no})
+</insert>
+<!-- 댓글전체보기 -->
+<select id="getList" parameterType="Integer" resultType="com.mybook.dto.CommentDTO">
+select qreply_no, qreply_username, qreply_content, qreply_regdate from qna_reply where q_no=#{q_no}
+</select>
+<!-- 댓글삭제 -->
+<delete id="delete" parameterType="Integer">
+delete from qna_reply where qreply_no=#{qreply_no}
+
+</delete>
+<!-- 댓글갯수세기 -->
+<select id="countReply" parameterType="Integer" resultType="com.mybook.dto.CommentDTO">
+select count(*) from qna_reply where q_no=#{q_no}
+</select>
+
+<!-- 댓글하나찾기 -->
+<select id="findbyQreply_no" parameterType="Integer" resultType="com.mybook.dto.CommentDTO">
+select * from qna_reply where qreply_no=#{qreply_no}
+</select>
+</mapper>
+
+

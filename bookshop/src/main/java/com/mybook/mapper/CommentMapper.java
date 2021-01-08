@@ -12,5 +12,5 @@ public interface CommentMapper {
 	public List<CommentDTO> getList(int q_no);
 	public void insert(CommentDTO comment);
 	public void delete(int cnum);
-	public CommentDTO countReply(int q_no);
+	public CommentDTO findbyQreply_no(int qreply_no);
 }

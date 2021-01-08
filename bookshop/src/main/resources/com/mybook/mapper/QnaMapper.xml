@@ -29,4 +29,10 @@ where q_no=#{q_no}
 <delete id="delete">
 delete from qna where q_no=#{q_no}
 </delete>
+
+<!-- updateReplyCnt -->
+<update id="updateReplyCnt">
+update qna set replyCnt = replyCnt +#{amount}
+where q_no = #{q_no}
+</update>
 </mapper>

@@ -55,10 +55,10 @@
 </div>
 <script>
 $("#btnDelete").click(function(){
-	//alert($("#bno").text())
+	//alert($("#userid").val())
 	$.ajax({
 		type:"delete",
-		url:"delete/"+$("#userid").val(),
+		url:"/admin/a_member/delete/"+$("#userid").val(),
 		success:function(resp){
 			if(resp=="success"){
 				alert("삭제성공");
@@ -66,6 +66,7 @@ $("#btnDelete").click(function(){
 			}//if
 		}//success
 	})//ajax
+})
 </script>
  <%--footer영역 --%>
 <%@include file="../../includes/footer.jsp"%>
