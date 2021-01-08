@@ -1,7 +1,16 @@
 package com.mybook.app;
 
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/reply/*")
@@ -9,15 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class QnaReplyController {
 	@Autowired
 	private CommentService cservice;
-	//´ñ±Û Ãß°¡
+	//ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 	@PostMapping("commentInsert")
 	@ResponseBody
-	public String insert(@RequestBody CommentDTO comment, HttpSession session) {//@RequestBody ÀÌ ¾î³ëÅ×ÀÌ¼ÇÀ» ºÙ¿©Áà¾ß Á¦ÀÌ½¼ ÇüÅÂ·Î °ªµéÀÌ ³Ñ¾î¿Â´Ù
+	public String insert(@RequestBody CommentDTO comment, HttpSession session) {//@RequestBody ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½Â´ï¿½
 		String writer = (String) session.getAttribute("sessid");
 		comment.setUserid(writer);;
 		cservice.insert(comment);
 		System.out.println(comment);
-		return "success";//¿©±â ½ºÆ®¸µÀº ºä¸¦ Àâ±â ¶§¹®¿¡ ResponseBody¸¦ ºÙ¿©ÁÖ´Â °ÍÀÌ´Ù. 
+		return "success";//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ä¸¦ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ResponseBodyï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½. 
 	}
 	
 	@GetMapping("commentList")

@@ -36,5 +36,10 @@ public class QnaRepository {
 		qnaMapper.update(qna);
 		
 	}
+
+	public void delete(int q_no) {
+		qnaMapper.delete(q_no);
+		
+	}
 	
 }

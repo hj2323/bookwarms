@@ -7,15 +7,16 @@ import com.mybook.dto.MemberDTO;
 import com.mybook.dto.Qna;
 
 public interface QnaMapper {
-	//qna ±Û¾²±â
+	//qna ï¿½Û¾ï¿½ï¿½ï¿½
 	public void insert(Qna qna);
-	//qna±Û¼ö Ä«¿îÆ®
+	//qnaï¿½Û¼ï¿½ Ä«ï¿½ï¿½Æ®
 	public int getCount(HashMap<String, Object> hm);
-	//qna ÀüÃ¼º¸±â
+	//qna ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½
 	public List<MemberDTO> findAll(HashMap<String, Object> hm);
-	//qna »ó¼¼º¸±â
+	//qna ï¿½ó¼¼ºï¿½ï¿½ï¿½
 	public Qna findByQno(int q_no);
-	//¼öÁ¤ÇÏ±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public void update(Qna qna);
-
+	public void delete(int q_no);
+	
 }

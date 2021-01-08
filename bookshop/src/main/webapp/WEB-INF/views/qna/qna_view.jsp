@@ -18,6 +18,7 @@
 		<thead>
 			<tr>
 				<td>제목</td>
+				<input type="hidden" value="${qna.q_no}" id="qno"/>
 				<td colspan="3">${qna.q_subject}</td>
 
 
@@ -48,7 +49,7 @@
 	<h4>댓글쓰기</h4>
 	<div class="form-group">
 		<label for="comment">Comment:</label>
-		<textarea class="form-control" rows="5" id="comment"></textarea>
+		<textarea class="form-control" rows="5" id="msg"></textarea>
 		<c:choose>
 			<c:when test="${empty sessionScope.sessid}">
 				<!-- 세션이 없을때 -->
@@ -69,7 +70,7 @@
 		$.ajax({
 			type:"get",
 			url:"/reply/commentList",
-			data:{"num":$("#bno").text()}
+			data:{"q_no":$("#qno").val()}
 
 		})
 		.done(function(resp){
@@ -85,9 +86,9 @@
 				htmlStr += "<div class='panel-group'>"
 				htmlStr += "<div class='panel panel-default'>"
 				htmlStr += "<div class='panel-body'>"
-				htmlStr += "<b>작성자</b> " +val.userid+"	&nbsp;&nbsp;<b>내용</b> " + val.content+"	&nbsp;&nbsp;<b>작성일</b>" +val.regdate
+				htmlStr += "<b>작성자</b> " +val.userid+"	&nbsp;&nbsp;<b>내용</b> " + val.qreply_content+"	&nbsp;&nbsp;<b>작성일</b>" +val.qreply_regdate
 				//data를 사용하면 내가 마치 태그를 하나 만들는 것처럼 사용 가능
-				htmlStr += "<a data-cnum="+val.cnum+">del&nbsp;x</a><hr>";
+				htmlStr += "<a data-qreply_no="+val.qreply_no+">del&nbsp;x</a><hr>";
 				htmlStr += "</div>"
 				htmlStr += "</div>"
 					
@@ -138,8 +139,8 @@
 	//댓글쓰기
 	$("#commentBtn").on("click",function(){
 		var data={
-		"bnum":$("#bno").text(),
-		"content":$("#msg").val()
+		"q_no":$("#qno").val(),
+		"qreply_content":$("#msg").val()
 				
 		}
 		$.ajax({
@@ -166,7 +167,7 @@ $("#btnDelete").click(function(){
 	//alert($("#bno").text())
 	$.ajax({
 		type:"delete",
-		url:"/delete/"+$("#bno").text(),
+		url:"/delete/"+$("#qno").val(),
 		success:function(resp){
 			if(resp=="success"){
 				alert("삭제성공");

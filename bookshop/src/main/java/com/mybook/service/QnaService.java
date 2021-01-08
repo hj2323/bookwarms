@@ -31,5 +31,9 @@ public class QnaService {
 		qnaRepository.update(qna);
 		
 	}
+	public void delete(int q_no) {
+		qnaRepository.delete(q_no);
+		
+	}
 
 }
