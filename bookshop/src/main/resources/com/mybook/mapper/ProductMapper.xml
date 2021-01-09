@@ -8,10 +8,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 insert into books(book_title, book_author, cateCode, book_releaseDate, book_price, book_description)
  values(#{book_title},#{book_author},#{cateCode},#{book_releaseDate}, #{book_price}, #{book_description})
 </insert>
-
 <!-- 상품전체보기 -->
-<select id="findAll" parameterType="java.util.Map" resultType="com.mybook.dto.Books">
-select * from books
+<select id="findAll" resultType="com.mybook.dto.Books">
+select B.book_id, B.book_title, B.book_author, B.book_releaseDate, B.cateCode ,B.book_price, B.book_description , BC.cateName
+from books B left outer join books_category BC on ( B.cateCode = BC.cateCode)
+order by B.book_id desc
+</select>
+
+<!-- 상품전체보기(페이징추가) -->
+<select id="findAllwithPage" parameterType="java.util.Map" resultType="com.mybook.dto.Books">
+select B.book_id, B.book_title, B.book_author, B.book_releaseDate, B.cateCode ,B.book_price, B.book_description , BC.cateName
+from books B left outer join books_category BC on ( B.cateCode = BC.cateCode)
+order by B.book_id desc
+limit #{startRow}, #{pageSize}
+<!-- limit [시작행번호],[가지고올 글갯수] -->
+</select>
+
+<!-- 카테고리별로 상품전체보기 -->
+<select id="findAllwithPageNcate" parameterType="java.util.Map" resultType="com.mybook.dto.Books">
+select B.book_id, B.book_title, B.book_author, B.book_releaseDate, B.cateCode ,B.book_price, B.book_description , BC.cateName
+from books B left outer join books_category BC on ( B.cateCode = BC.cateCode)
+where B.cateCode=#{cateCode}
+order by B.book_id desc
+limit #{startRow}, #{pageSize}
+
+<!-- limit [시작행번호],[가지고올 글갯수] -->
+</select>
+
+
+<select id="getCount" parameterType="java.util.Map" resultType="Integer">
+select count(*) from books
+</select >
+
+<select id="findById" resultType="com.mybook.dto.Books">
+select B.book_id, B.book_title, B.book_author, B.book_releaseDate, B.cateCode, 
+B.book_price, B.book_description , BC.cateName
+from books B left outer join books_category BC on ( B.cateCode = BC.cateCode)
+ where book_id=#{book_id}
 </select>
 
 <!-- 상품수정하기 -->
@@ -21,6 +54,7 @@ book_releaseDate=#{book_releaseDate},
 cateCode=#{cateCode}, book_price=#{book_price},
 book_description=#{book_description}
 where book_id=#{book_id}
+
 </update>
 
 <!-- 상품삭제하기 -->

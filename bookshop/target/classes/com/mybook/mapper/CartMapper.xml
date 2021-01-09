@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybook.mapper.CartMapper">
+<!-- 상품추가하기 -->
+<insert id="insert">
+insert into cart(userid, book_id, amount)
+ values(#{userid},#{book_id},#{amount})
+</insert>
+
+<!-- 상품전체보기 -->
+<select id="findAll" resultType="com.mybook.dto.Cart">
+select b.book_title, b.book_author, b.book_price, c.amount, c.cart_id 
+from cart c join books b on (c.book_id=b.book_id)
+where c.userid=#{userid}
+</select>
+
+<!-- findbyUserid -->
+<select id="findbyUserid" parameterType="String" resultType="com.mybook.dto.Cart">
+select * from cart where userid=#{userid}
+</select>
+
+<!-- 상품수정하기 -->
+<update id="update">
+update cart set amount=#{amount}
+where cart_id=#{cart_id}
+</update>
+
+<!-- 상품삭제하기 -->
+<delete id="delete">
+delete from cart where cart_id=#{cart_id}
+</delete>
+</mapper>

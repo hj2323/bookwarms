@@ -1,5 +1,6 @@
 package com.mybook.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,10 @@ public class ProductRepository {
 		productMapper.insert(book);
 	}
 
-	// 상품전체보기
-	public List<Books> findAll() {
+	// 상품전체보기(페이징추가)
+	public List<Books> findAllwithPage(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
-		return productMapper.findAll();
+		return productMapper.findAllwithPage(hm);
 	}
 
 	// 상품수정
@@ -32,5 +33,21 @@ public class ProductRepository {
 	// 상품삭제
 	public void delete(int book_id) {
 		productMapper.delete(book_id);
+	}
+
+	public int getCount(HashMap<String, Object> hm) {
+		return productMapper.getCount(hm);
+	}
+	// 상품전체보기
+	public List<Books> findAll() {
+		return productMapper.findAll();
+	}
+
+	public Books findById(int book_id) {
+		return productMapper.findById(book_id);
+	}
+	//카테고리별로 상품전체보기
+	public List<Books> findAllwithPageNcate(HashMap<String, Object> hm) {
+		return productMapper.findAllwithPageNcate(hm);
 	}
 }

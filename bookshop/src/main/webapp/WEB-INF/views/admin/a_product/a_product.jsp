@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
 <title>✨Bookwarms</title>
+  <script   src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <%--head영역 --%>
 <%@include file="../../includes/header.jsp"%>
 
@@ -16,7 +17,10 @@
 		<%@include file="../nav.jsp"%>
 		<div class="col-sm-8">
 			<h2>상품관리</h2>
-			<h5><button type="button" class="btn btn-info" onclick="location.href='/admin/a_product/a_product_insert'">상품추가</button></h5>
+			<h5>
+				<button type="button" class="btn btn-info"
+					onclick="location.href='/admin/a_product/a_product_insert'">상품추가</button>
+			</h5>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -40,27 +44,51 @@
 							<td><fmt:formatDate value="${book.book_releaseDate}"
 									pattern="yyyy.MM.dd" /></td>
 							<td>${book.cateCode}</td>
-							<td><div class="form-group">
-									<select class="form-control" id="sel1">
-										<option value="" selected>{book.cateName}</option>
-										<c:forEach items="${categorylist}" var="cate">
-										<option value="${cate.cateCode}">${cate.cateName }</option>
-										</c:forEach>
-									</select>
-								</div></td>
+							<td>${book.cateName}</td>
 							<td>
 								<div class="checkbox">
-									<input type="checkbox" value="" name="categorys">
-									<button type="button" class="btn btn-warning btn-xs">수정</button>
+									<input type="checkbox" value="" class="chBox" name="categorys" data-bookid="${book.book_id }">
+									<button type="button" class="btn btn-warning btn-xs"
+									onclick="location.href='/admin/a_product/update?book_id=${book.book_id}'">수정</button>
 								</div>
 
 							</td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="5"></td>
+						<td colspan="5">
+							<%--페이징 --%>
+							<ul class="pagination">
+								<c:if test="${pageDto.totalCount gt 0 }">
+									<%-- [이전] 출력 --%>
+									<c:if test="${ pageDto.startPage gt pageDto.pageBlock }">
+										<li><a
+											href="a_product?pageNum=${pageDto.startPage - pageDto.pageBlock}">Previous</a></li>
+									</c:if>
+									<!-- 페이지번호 -->
+									<c:forEach var="i" begin="${pageDto.startPage}"
+										end="${pageDto.endPage}" step="1">
+										<c:choose>
+											<c:when test="${pageScope.i eq requestScope.pageNum}">
+												<li class="page-item"><a class="page-link"
+													href="/admin/a_product/a_product?pageNum=${i}">${i}</a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="page-item"><a class="page-link"
+													href="/admin/a_product/a_product?pageNum=${i}">${i}</a></li>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									<!-- 다음 -->
+									<c:if test="${pageDto.endPage lt pageDto.pageCount }">
+										<li><a
+											href="a_product?pageNum=${pageDto.startPage + pageDto.pageBlock}">Next</a></li>
+									</c:if>
+								</c:if>
+							</ul>
+						</td>
 						<td>
-							<button type="button" class="btn btn-danger">선택삭제</button>
+							<button type="button" class="btn btn-danger" id="selectDelete_btn">선택삭제</button>
 						</td>
 					</tr>
 
@@ -106,6 +134,32 @@
 		$cateAll.prop('checked', selectAll);
 
 	});
+$("#selectDelete_btn").click(function(){
+	var confirm_val = confirm("정말 삭제하시겠습니까?");
+	if(confirm_val){
+		var checkArr = new Array();
+
+		$("input[class='chBox']:checked ").each(function(){
+			checkArr.push($(this).attr("data-bookid"));
+		});
+
+		$.ajax({
+			url:"/admin/a_product/delete",
+			type:"post",
+			data:{chbox : checkArr},
+			success: function(result){
+
+				if(result==1){
+				location.href="/admin/a_product/a_product";
+				}else{
+					alert("삭제 실패")
+				}	
+			}
+		})
+	}
+})
+
+	
 </script>
 
 <%@include file="../../includes/footer.jsp"%>

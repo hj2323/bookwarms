@@ -5,6 +5,19 @@
 <html lang="en">
 <head>
 <title>✨Bookwarms</title>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7ejAWAAdXj3KcsLxZ4Y7XOjCYlgiO0T4&callback=initMap"async defer></script>
+<style>
+#map{
+	width:100%;
+	height:300px;
+}
+</style>
+<script>
+function showMap(){
+	var e = document.getElementById('map');
+	new google.maps.Map(e, {center:{lat:35.156700, lng:129.059391}, zoom:14});
+}
+</script>
 <%--head영역 --%>
 <%@include file="includes/header.jsp"%>
 
@@ -39,7 +52,9 @@
 					</tr>
 				</tbody>
 			</table>
-
+			<h2>오시는길<button class="btn btn-secondary" onclick="showMap()">지도보기</button></h2>
+			
+			<div id="map"></div>
 			<hr class="d-sm-none">
 		</div>
 		<div class="col-sm-8">

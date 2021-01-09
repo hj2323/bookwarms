@@ -97,15 +97,15 @@ public class QnaController {
 		Qna qna = qservice.findByQno(q_no);
 		String sessid = (String) session.getAttribute("sessid");
 		String writer = qna.getQ_writer();
-		if(writer.equals(sessid)) {
+		if(writer.equals(sessid)&&sessid.equals("admin")) {
 			model.addAttribute("qna",qna);
 			return "/qna/qna_update";	
 		}else {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-            out.println("<script>alert('���������� �����ϴ�.'); history.go(-1);</script>");
-            out.flush();
-            return "redirect:/";
+			//response.setContentType("text/html; charset=UTF-8");
+			//PrintWriter out = response.getWriter();
+            //out.println("<script>alert('���������� �����ϴ�.'); history.go(-1);</script>");
+            //out.flush();
+            return "redirect:/qna/viewPath/"+q_no;
         }
     }
 	@PostMapping("update")
