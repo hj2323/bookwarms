@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>â¨Bookwarms</title>
+   <title>✨Bookwarms</title>
   <%--head영역 --%>
 <%@include file="../../includes/header.jsp"%>
 
@@ -12,16 +12,16 @@
 <div class="container" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-4">
-      <h3>ê´ë¦¬ìíì´ì§</h3>
+      <h3>마이페이지</h3>
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="/mypage/myaccount/myaccount.jsp">ë´ ì ë³´ ê´ë¦¬</a>
+          <a class="nav-link" href="/mypage/myaccount/myaccount.html">내 정보 관리</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/mypage/myorder/myorder.jsp">ë´ ì£¼ë¬¸ ì¡°í</a>
+          <a class="nav-link" href="/mypage/myorder/myorder.html">내 주문 조회</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/mypage/myqna/myqna.jsp">ë´ ë¬¸ìê¸ ì¡°í</a>
+            <a class="nav-link" href="/mypage/myqna/myqna.html">내 문의글 조회</a>
           </li>
         
        
@@ -29,7 +29,7 @@
       <hr class="d-sm-none">
     </div>
     <div class="col-sm-8">
-      <h2>ë´ ì ë³´ ê´ë¦¬</h2>
+      <h2>내 정보 관리</h2>
       <h5>Title description, Dec 7, 2017</h5>
       <table class="table table-bordered">
         <thead>
@@ -62,9 +62,7 @@
   </div>
 </div>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <p><a href="#">ð¼ð¼ð¼</a></p>
-</div>
+<%@include file="../../includes/footer.jsp"%>
 
 </body>
 </html>

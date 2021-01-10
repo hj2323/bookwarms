@@ -29,4 +29,8 @@ public class OrderService {
 		public void delete(int order_id) {
 			orderRepository.delete(order_id);
 		}
+		public List<Order> findById(int cart_id) {
+			// TODO Auto-generated method stub
+			return orderRepository.findById(cart_id);
+		}
 }

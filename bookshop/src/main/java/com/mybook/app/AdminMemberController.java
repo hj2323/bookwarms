@@ -24,7 +24,8 @@ import com.mybook.service.MemberService;
 @RequestMapping("/admin/a_member")
 @Controller
 public class AdminMemberController {
-	@Autowired MemberService mservice;
+	@Autowired 
+	private MemberService mservice;
 	
 	
 	@GetMapping("a_member")

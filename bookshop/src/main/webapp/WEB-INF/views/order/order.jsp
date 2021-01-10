@@ -3,60 +3,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>â¨Bookwarms</title>
+ <title>✨Bookwarms</title>
   <%--head영역 --%>
 <%@include file="../includes/header.jsp"%>
 
 
 
 <div class="container" style="margin-top:30px">
-    <h1>ì£¼ë¬¸/ê²°ì </h1>
-    <h4>êµ¬ë§¤ìì ë³´</h4>
+      <h1>주문/결제</h1>
+    <h4>구매자정보</h4>
     <table class="table">
         <tbody>
           <tr>
-            <td width="15%">ì´ë¦</td>
+            <td width="15%">이름</td>
             <td><div class="form-group">
                 <input type="text" class="form-control" id="">
               </div></td>
           </tr>
           <tr>
-            <td>ì´ë©ì¼</td>
+            <td>이메일</td>
             <td><div class="form-group">
                 <input type="email" class="form-control" id="">
               </div></td>
           </tr>
           <tr>
-            <td>í´ëí°ë²í¸</td>
+            <td>휴대폰번호</td>
             <td><div class="form-group">
                 <input type="text" class="form-control" id="">
               </div></td>
           </tr>
         </tbody>
       </table>
-      <h4>ë°ë ì¬ë ì ë³´</h4>
+      <h4>받는 사람 정보</h4>
     <table class="table">
         <tbody>
           <tr>
-            <td width="15%">ì´ë¦</td>
+            <td width="15%">이름</td>
             <td><div class="form-group">
                 <input type="text" class="form-control" id="">
               </div></td>
           </tr>
           <tr>
-            <td>ë°°ì¡ì£¼ì</td>
+            <td>배송주소</td>
             <td><div class="form-group">
                 <input type="text" class="form-control" id="">
               </div></td>
           </tr>
           <tr>
-            <td>ì°ë½ì²</td>
+            <td>연락처</td>
             <td><div class="form-group">
                 <input type="text" class="form-control" id="">
               </div></td>
           </tr>
           <tr>
-            <td>ë°°ì¡ ìì²­ì¬í­
+            <td>배송 요청사항
             </td>
             <td><div class="form-group">
                 <input type="text" class="form-control" id="">
@@ -64,63 +64,63 @@
           </tr>
         </tbody>
       </table>
-      <h4>ë°°ì¡
+      <h4>배송
     </h4>
       <table class="table">
           <tbody>
             <tr>
-              <td width="15%">ì±ì ëª©</td>
-              <td>ìë nê°</td>
+              <td width="15%">책제목</td>
+              <td>수량 n개</td>
             </tr>
             <tr>
-                <td>ì±ì ëª©</td>
-                <td>ìë nê°</td>
+                <td>책제목</td>
+                <td>수량 n개</td>
             </tr>
             <tr>
-                <td>ì±ì ëª©</td>
-                <td>ìë nê°</td>
+                <td>책제목</td>
+                <td>수량 n개</td>
             </tr>
           </tbody>
         </table>
-        <h4>ê²°ì ì ë³´
+        <h4>결제정보
 
         </h4>
           <table class="table">
               <tbody>
                 <tr>
-                  <td width="15%">ì´ ê²°ì ê¸ì¡</td>
-                  <td>x,xxxì</td>
+                  <td width="15%">총 결제금액</td>
+                  <td>x,xxx원</td>
                 </tr>
                 <tr>
-                    <td>ê²°ì ë°©ë² </td>
+                    <td>결제방법 </td>
                     <td><div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="optradio">ê³ì¢ì´ì²´
+                          <input type="radio" class="form-check-input" name="optradio">계좌이체
                         </label>
                       </div>
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="optradio">ì ì©ì¹´ë
+                          <input type="radio" class="form-check-input" name="optradio">신용카드
                         </label>
                       </div>
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="optradio">ì²´í¬ì¹´ë
+                          <input type="radio" class="form-check-input" name="optradio">체크카드
                         </label>
                       </div>
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="optradio">ë²ì¸ì¹´ë
+                          <input type="radio" class="form-check-input" name="optradio">법인카드
                         </label>
                       </div>
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="optradio">í´ëí°
+                          <input type="radio" class="form-check-input" name="optradio">휴대폰
                         </label>
                       </div>
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="optradio">ë¬´íµì¥ìê¸(ê°ìê³ì¢)
+                          <input type="radio" class="form-check-input" name="optradio">무통장입금(가상계좌)
                         </label>
                       </div>
                      
@@ -130,11 +130,10 @@
                
               </tbody>
             </table>
-            <button type="button" class="btn btn-success">ê²°ì íê¸°</button>
+            <button type="button" class="btn btn-success">결제하기</button>
 </div>
 
-
-  <%--fotter영역 --%>
+  <%--footer영역 --%>
 <%@include file="../includes/footer.jsp"%>
 
 </body>

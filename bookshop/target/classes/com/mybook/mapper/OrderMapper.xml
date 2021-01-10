@@ -10,10 +10,12 @@ insert into tbl_order(userid, order_rec, address1, address2, order_phone, order_
 </insert>
 
 <!-- 주문전체보기 -->
-<select id="findAll" parameterType="java.util.Map" resultType="com.mybook.dto.Books">
+<select id="findAll" parameterType="java.util.Map" resultType="com.mybook.dto.Order">
 select * from tbl_order
 </select>
-
+<select id="findById" parameterType="java.util.Map" resultType="com.mybook.dto.Order">
+select * from tbl_order where userid=#{userid}
+</select>
 
 <!-- 주문취소하기 -->
 <delete id="delete">

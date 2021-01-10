@@ -21,6 +21,11 @@ where c.userid=#{userid}
 select * from cart where userid=#{userid}
 </select>
 
+<!-- findbyUserid -->
+<select id="findbyCartid" parameterType="Integer" resultType="com.mybook.dto.Cart">
+select * from cart where cart_id=#{cart_id}
+</select>
+
 <!-- 상품수정하기 -->
 <update id="update">
 update cart set amount=#{amount}

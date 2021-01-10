@@ -33,6 +33,11 @@ public class OrderRepository {
 	public void delete(int order_id) {
 		orderMapper.delete(order_id);
 	}
+
+	public List<Order> findById(int cart_id) {
+		// TODO Auto-generated method stub
+		return orderMapper.findById(cart_id);
+	}
 }
 
 

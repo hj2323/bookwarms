@@ -36,6 +36,11 @@ public class CartRepository {
 		public List<Cart> findbyUserid(String userid) {
 			return cartMapper.findbyUserid(userid);
 		}
+
+		public List<Cart> findByCartid(int cart_id) {
+			// TODO Auto-generated method stub
+			return cartMapper.findByCartid(cart_id);
+		}
 }
 
 	

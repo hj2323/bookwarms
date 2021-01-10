@@ -33,5 +33,9 @@ public class CartService {
 			// TODO Auto-generated method stub
 			return cartRepository.findbyUserid(userid);
 		}
+		public List<Cart> findByCartid(int cart_id) {
+			// TODO Auto-generated method stub
+			return cartRepository.findByCartid(cart_id);
+		}
 }
 

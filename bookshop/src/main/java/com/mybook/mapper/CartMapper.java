@@ -18,4 +18,6 @@ public interface CartMapper {
 	public void delete(int cart_id);
 
 	public List<Cart> findbyUserid(String userid);
+
+	public List<Cart> findByCartid(int cart_id);
 }

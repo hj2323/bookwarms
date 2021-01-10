@@ -47,7 +47,7 @@
 					</tr>
 					<tr>
 						<td>가격(원)</td>
-						<td><input type="text" class="form-control" id="usr" name="book_price"></td>
+						<td><input type="number" class="form-control" id="usr" name="book_price"></td>
 						<td>책이미지 파일업로드</td>
 						<td><div class="custom-file">
 								<input type="file" class="custom-file-input" id="customFile">

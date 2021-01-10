@@ -1,5 +1,9 @@
+<%@page import="com.mybook.dto.Cart"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,25 +25,45 @@
               </div></th>
              <th>상품정보</th>
              <th>상품금액</th>
+              <th>수량</th>
+               <th>합계</th>
              <th>배송비</th>
             
             
           </tr>
         </thead>
         <tbody>
+        <%
+			int sum = 0;
+        	ArrayList<Cart> cartList = (ArrayList<Cart>)
+        	request.getAttribute("cartlist");
+        	if(cartList == null){
+        		cartList = new ArrayList<Cart>();
+        	}
+        	for(int i = 0; i<cartList.size();i++){
+        		Cart cart = cartList.get(i);
+        		int total = cart.getBook_price() * cart.getAmount();
+        		sum = sum + total;
+        	}
+        
+        %>
         <c:forEach items="${cartlist }" var="cart">
           <tr>
-            <td><input type="checkbox" class="chBox" name="categorys" data-cartid="${cart.cart_id }"></td>
+            <td>
+            <input type="hidden" value="${cart.cart_id}" id="cart_id"/>
+            <input type="checkbox" class="chBox" name="categorys" data-cartid="${cart.cart_id }"></td>
             <td>
 	            <img src="https://images.unsplash.com/photo-1549122728-f519709caa9c?
 	            ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2
 	            .1&auto=format&fit=crop&w=1525&q=80" width="150px;">
 	            <p>${cart.book_title}</p>
 	            <p>${cart.book_author} 저</p>
-	        	<p> 수량<input type="number" id="amount" name="amount" value="${cart.amount }" min="1" max="999999">
-	        	<button type="button" class="btn  btn btn-secondary btn-sm">수정</button></p>
+	        	
         	</td>
-            <td>	${cart.book_price}</td>
+            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${cart.book_price}" />원</td>
+            <td><input type="number" id="amount" name="amount" value="${cart.amount }" min="1" max="999999">
+	        	<button type="button" class="btn  btn btn-secondary btn-sm" id="update_btn">수정</button></td>
+            <td><b><fmt:formatNumber type="number" maxFractionDigits="3" value="${cart.book_price* cart.amount}" />원</b></td>
             <td colspan="2">무료</td>
           </tr>
           </c:forEach>
@@ -66,7 +90,7 @@
             <td colspan="2">무료</td>
           </tr>
           <tr>
-            <td colspan="4"><b>상품가격 24,000원 + 배송비 무료 = 주문금액 24,000원</b></td>
+            <td colspan="4"><b>상품가격 <fmt:formatNumber type="number" maxFractionDigits="3" value="<%=sum %>" />원 + 배송비 무료 = 주문금액 <fmt:formatNumber type="number" maxFractionDigits="3" value="<%=sum %>" />원</b></td>
             
           </tr>
           
@@ -74,11 +98,11 @@
       </table>
       <hr>
       <button type="button" class="btn btn-danger" id="selectDelete_btn">선택삭제</button>
-      <div class="total">총 상품가격 100,000원 + 총 배송비 0원 = 총 주문금액 100,000원</div>
+      <div class="total">총 상품가격 <b><fmt:formatNumber type="number" maxFractionDigits="3" value="<%=sum %>" /></b>원 + 총 배송비 0원 = 총 주문금액 <b><fmt:formatNumber type="number" maxFractionDigits="3" value="<%=sum %>" /></b>원</div>
 
       <div class="buttons">
         <button type="button" onclick="location.href='/booklist/booklist'"  class="btn btn-primary">계속쇼핑하기</button>
-        <button type="button" class="btn btn-primary" onclick="location.href='/order/order'">구매하기</button>
+        <button type="button" class="btn btn-primary" id="orderBtn">구매하기</button>
 
       </div>
 
@@ -104,6 +128,8 @@
 		$cateAll.prop('checked', selectAll);
 
 	});
+
+	
 $("#selectDelete_btn").click(function(){
 	var confirm_val = confirm("정말 삭제하시겠습니까?");
 	if(confirm_val){
@@ -129,6 +155,52 @@ $("#selectDelete_btn").click(function(){
 	}
 })
 
+$("#orderBtn").click(function(){
+	alert("ss")
+	var checkArr = new Array();
+
+		$("input[class='chBox']:checked ").each(function(){
+			checkArr.push($(this).attr("data-cartid"));
+		});
+
+		$.ajax({
+			url:"/order/order",
+			type:"post",
+			data:{chbox : checkArr}
+			/*success: function(result){
+
+				if(result==1){
+				location.href="/order/order";
+				}else{
+					alert("실패")
+				}	
+			}*/
+		})
+	
+})
+
+/*
+$("#update_btn").click(function(){
+	var data = {
+		"amount":$("#amount").val()
+		"cart_id":$("#cart_id").val()
+	}
+	$.ajax({
+		url:"/cart/update",
+		type:"post"
+		contentType:'application/json;charset=utf-8',
+		data:JSON.stringify(data)	
+		//amount가 int라서???
+	})
+	.done(function(resp){
+		(resp+"수량변경")
+			
+			
+	})
+	.fail(function(error){
+		alert("수량변경 실패");
+	})
+})*/
 	
 </script>
 <%@include file="../includes/footer.jsp"%>

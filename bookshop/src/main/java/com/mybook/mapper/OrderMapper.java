@@ -16,4 +16,6 @@ public interface OrderMapper {
 
 	// 주문취소
 	public void delete(int order_id);
+	
+	public List<Order> findById(int cart_id);
 }

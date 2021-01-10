@@ -14,7 +14,7 @@ public class Books {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date book_releaseDate;
 	private String cateCode;
-	private String book_price;
+	private int book_price;
 	private String book_description;
 	private String book_Img;
 	//book_category에 있는 컬럼
