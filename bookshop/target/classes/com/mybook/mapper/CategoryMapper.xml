@@ -6,6 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="findAll" parameterType="java.util.Map" resultType="com.mybook.dto.BooksCategory">
 select * from books_category
 </select>
-
+<insert id="insert">
+insert into books_category(cateName, cateCode) values(#{cateName}, #{cateCode})
+</insert>
 
 </mapper>

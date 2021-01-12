@@ -16,5 +16,9 @@ public class CategoryService {
 	public List<BooksCategory> findAll() {
 		return categoryRepository.findAll();
 	}
+	public void insert(BooksCategory cate) {
+		categoryRepository.insert(cate);
+		
+	}
 
 }

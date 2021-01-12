@@ -27,7 +27,7 @@
         <c:forEach items="${qnalist}" var="qna">
          <tr>
            <td>${qna.q_no }</td>
-           <td><a href="viewPath/${qna.q_no}">${qna.q_subject }<span class="badge">${qna.replyCnt }</span></a></td>
+           <td><a href="viewPath?q_no=${qna.q_no}">${qna.q_subject }<span class="badge">${qna.replyCnt }</span></a></td>
            <td>${qna.q_writer }</td>
            <td><fmt:formatDate value="${qna.q_regdate}" pattern="yyyy.MM.dd"/>
           </td>

@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
 <title>â¨Bookwarms</title>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 <%--head영역 --%>
 <%@include file="../includes/header.jsp"%>
 
@@ -27,7 +28,8 @@
 					<td colspan="4">
 						<div class="form-group">
 							<textarea class="form-control" rows="5" id="comment"
-								name="q_content" placeholder="문의사항을 입력해주세요"></textarea>
+								name="q_content" placeholder="문의사항을 입력해주세요">
+								</textarea>
 						</div>
 					</td>
 
@@ -39,7 +41,7 @@
 		<c:choose>
 			<c:when test="${empty sessionScope.sessid}">
 				<!-- 세션이 없을때 -->
-				
+
 			</c:when>
 			<c:otherwise>
 				<!-- 세션이 있을때 -->
@@ -47,8 +49,8 @@
 			</c:otherwise>
 		</c:choose>
 		<button type="button" class="btn btn-primary">목록으로</button>
-		</form>
-		<hr>
+	</form>
+	<hr>
 </div>
 
 
