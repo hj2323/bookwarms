@@ -1,11 +1,16 @@
 package com.mybook.app;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mybook.dto.Books;
 import com.mybook.dto.BooksCategory;
@@ -21,7 +28,11 @@ import com.mybook.dto.MemberDTO;
 import com.mybook.dto.PageDTO;
 import com.mybook.service.CategoryService;
 import com.mybook.service.ProductService;
+import com.mybook.utils.UploadFileUtils;
 
+import lombok.extern.java.Log;
+
+@Log
 @RequestMapping("/admin/a_product")
 @Controller
 public class ProductController {
@@ -29,6 +40,9 @@ public class ProductController {
 	private ProductService pservice;
 	@Autowired
 	private CategoryService cateservice;
+	@Autowired
+	private String uploadPath;
+	
 	
 	@GetMapping("a_product")
 	public String a_product(Model model, HttpSession session, String pageNum) {
@@ -92,10 +106,55 @@ public class ProductController {
 		}
 	}
 	
+	
+//	@PostMapping("/register")
+//	public String register(BoardVO board, RedirectAttributes rttr) {
+//
+//		log.info("==========================");
+//
+//		log.info("register: " + board);
+//
+//		if (board.getAttachList() != null) {
+//
+//			board.getAttachList().forEach(attach -> log.info(attach));
+//
+//		}
+//
+//		log.info("==========================");
+//
+//		service.register(board);
+//
+//		rttr.addFlashAttribute("result", board.getBno());
+//
+//		return "redirect:/board/list";
+//	}
 	@PostMapping("insert")
-	public String insert(Books book) {
+	public String insert(Books book, MultipartFile file, RedirectAttributes rttr) {
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
 		
+		if(file != null) {
+			try {
+				fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else {
+			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+		
+		book.setBook_Img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		book.setThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName );
+		
+
 		pservice.insert(book);
+
 		return "redirect:/admin/a_product/a_product";
 	}
 	
@@ -133,6 +192,9 @@ public class ProductController {
 		result=1;
 		return result;
 	}
+	
+	
+	
 	
 	
 }

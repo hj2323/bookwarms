@@ -16,4 +16,18 @@ public class NoticeService {
 	public List<Notice> list(){
 		return noticeRepository.list();
 	}
+	
+	//추가
+	public void insert(Notice notice) {
+		noticeRepository.insert(notice);
+	}
+	
+	//수정
+	public void update(Notice notice) {
+		noticeRepository.update(notice);
+	}
+	//삭제
+	public void delete(int nno) {
+		noticeRepository.delete(nno);
+	}
 }

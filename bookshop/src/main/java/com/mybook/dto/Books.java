@@ -1,6 +1,7 @@
 package com.mybook.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -20,4 +21,9 @@ public class Books {
 	//book_category에 있는 컬럼
 	//아우터 조인 할때 써서 추가해줌
 	private String cateName;
+	
+	private String ThumbImg;
+	
+	
+	
 }

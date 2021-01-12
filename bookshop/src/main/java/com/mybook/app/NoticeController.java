@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mybook.dto.Notice;
 import com.mybook.service.NoticeService;
 
 @RequestMapping("/admin/a_notice/*")
@@ -21,6 +22,13 @@ public class NoticeController {
 		return "/admin/a_notice/a_notice";
 	}
 	
+	@GetMapping("a_notice_insert")
+	public String a_notice_insert(Notice notice) {
+
+		nservice.insert(notice);
+
+		return "/admin/a_notice/a_notice_insert";
+	}
 	
 	
 }

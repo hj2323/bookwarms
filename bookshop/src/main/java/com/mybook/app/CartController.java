@@ -43,6 +43,7 @@ public class CartController {
 		String userid = (String) session.getAttribute("sessid");
 		cart.setUserid(userid);
 		
+		
 		//같은 book_id가 db에 이미 있는지 찾는 부분
 //		int book_id = cart.getBook_id();
 //		List<Cart> cartWithUserid = cartservice.findbyUserid(userid);

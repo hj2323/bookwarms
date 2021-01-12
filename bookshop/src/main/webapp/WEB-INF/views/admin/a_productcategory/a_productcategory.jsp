@@ -27,6 +27,7 @@
 					</tr>
 				</thead>
 				<tbody>
+					
          			 <c:forEach items="${categorylist}" var="category">
 					<tr>
 						<td>${category.cateName}</td>
@@ -34,7 +35,7 @@
 						<td>
 							<div class="checkbox">
 							<input type="checkbox" value="" name="categorys">
-							<button type="button" class="btn btn-warning btn-xs">수정</button>
+							
 							</div>
 							
 						</td>
@@ -47,10 +48,10 @@
 						</td>
 					</tr>
 					<tr>
-						<td><input type="text" class="form-control" id="usr"></td>
-						<td><input type="text" class="form-control" id="usr"></td>
+						<td><input type="text" class="form-control" id="cateName"></td>
+						<td><input type="text" class="form-control" id="cateCode"></td>
 						<td>
-							<button type="button" class="btn btn-info">추가</button>
+							<button type="button" class="btn btn-info" id="insertBtn">추가</button>
 						</td>
 					</tr>
 					
@@ -96,6 +97,30 @@ boxes.change(function () {
   $cateAll.prop('checked', selectAll);
 
 });
+
+//카테고리추가
+	$("#insertBtn").on("click",function(){
+		var data={
+		"cateName":$("#cateName").val(),
+		"cateCode":$("#cateCode").val()
+				
+		}
+		$.ajax({
+			type:"post",
+			url:"/admin/a_productcategory/insert",
+			contentType:'application/json;charset=utf-8',
+			data:JSON.stringify(data)
+		})//ajax
+		.done(function(){
+			alert("Insert 성공")
+			
+			location.reload();
+			})
+		.fail(function(){
+			alert("Insert 실패")
+			})
+
+	});
 </script>
 
 <%@include file="../../includes/footer.jsp"%>

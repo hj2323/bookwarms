@@ -18,4 +18,9 @@ public class CategoryRepository {
 		return categoryMapper.findAll();
 	}
 
+	public void insert(BooksCategory cate) {
+		categoryMapper.insert(cate);
+		
+	}
+
 }

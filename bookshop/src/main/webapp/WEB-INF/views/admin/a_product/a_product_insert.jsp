@@ -6,6 +6,7 @@
 <head>
 <title>✨Bookwarms</title>
 <%--head영역 --%>
+
 <%@include file="../../includes/header.jsp"%>
 
 
@@ -21,7 +22,7 @@
 				<table class="table">
 
 					<tr>
-						<td>책제목</td>
+						<td >책제목</td>
 						<td colspan="3"><input type="text" class="form-control"
 							id="usr" name="book_title"></td>
 
@@ -47,13 +48,8 @@
 					</tr>
 					<tr>
 						<td>가격(원)</td>
-						<td><input type="number" class="form-control" id="usr" name="book_price"></td>
-						<td>책이미지 파일업로드</td>
-						<td><div class="custom-file">
-								<input type="file" class="custom-file-input" id="customFile">
-								<label class="custom-file-label" for="customFile">Choose
-									file</label>
-							</div></td>
+						<td colspan="3"><input type="number" class="form-control" id="usr" name="book_price"></td>
+						
 
 					</tr>
 					<tr>
@@ -62,8 +58,37 @@
 								id="comment" name="book_description"></textarea></td>
 
 					</tr>
-
-
+					<tr>
+					<td>책이미지 파일업로드</td>
+						<td colspan="3">
+						<div class="inputArea">
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" id="customFile" name='file'>
+								<label class="custom-file-label" for="customFile">Choose
+									file</label>
+									
+									
+							</div>
+							<div class="select_img"><img src=""/></div>
+							
+							<script>
+							$("#customFile").change(function(){
+								if(this.files && this.files[0]){
+									var reader = new FileReader;
+									reader.onload = function(data){
+										$(".select_img img").attr("src", data.target.result).width(500);
+									}
+									reader.readAsDataURL(this.files[0]);
+								}
+							})
+						</script>
+						<%=request.getRealPath("/") %>
+						</div>
+						</td>
+					
+					</tr>
+					
+				
 
 				</table>
 				<button type="submit" class="btn btn-info">상품추가</button>

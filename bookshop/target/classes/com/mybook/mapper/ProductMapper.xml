@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.mybook.mapper.ProductMapper">
 <!-- 상품추가하기 -->
 <insert id="insert">
-insert into books(book_title, book_author, cateCode, book_releaseDate, book_price, book_description)
- values(#{book_title},#{book_author},#{cateCode},#{book_releaseDate}, #{book_price}, #{book_description})
+insert into books(book_title, book_author, cateCode, book_releaseDate, book_price, book_description, book_Img, ThumbImg)
+ values(#{book_title},#{book_author},#{cateCode},#{book_releaseDate}, #{book_price}, #{book_description}, #{book_Img}, #{ThumbImg})
 </insert>
 <!-- 상품전체보기 -->
 <select id="findAll" resultType="com.mybook.dto.Books">

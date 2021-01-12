@@ -42,9 +42,13 @@
 	</table>
 	<hr>
 	<button type="button" class="btn btn-primary">목록으로</button>
+	
+	<c:if text="${(sessionScope.sessid == qna.q_writer) or (sessionScope.sessid == 'admin')}">
 	<button type="button"
 		onclick="location.href='/qna/qna_update?q_no=${qna.q_no}'"
 		class="btn btn-primary">수정하기</button>
+	</c:if>
+	
 	<button type="button" class="btn btn-primary" id="btnDelete">삭제하기</button>
 	<hr>
 	<h4>댓글쓰기</h4>

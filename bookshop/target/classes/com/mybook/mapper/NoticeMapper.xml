@@ -8,4 +8,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="list" resultType="com.mybook.dto.Notice">
 select * from notice;
 </select>
+
+<!-- 추가하기 -->
+<insert id="insert">
+insert into notice(n_subject, n_writer, n_filename, n_regdate, n_hit)
+ values(#{n_subject},#{n_writer},#{n_filename},now(), #{n_hit})
+</insert>
+
+
+
+<!-- 수정하기 -->
+<update id="update">
+update notice set n_subject=#{n_subject}, n_writer=#{n_writer},
+n_filename=#{n_filename}
+where nno=#{nno}
+</update>
+
+<!-- 삭제하기 -->
+<delete id="delete">
+delete from notice where nno=#{nno}
+</delete>
 </mapper>

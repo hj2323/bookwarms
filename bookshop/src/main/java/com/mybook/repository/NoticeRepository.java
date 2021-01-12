@@ -16,4 +16,20 @@ public class NoticeRepository {
 	public List<Notice> list(){
 		return noticeMapper.list();
 	}
+	// 추가
+	public void insert(Notice notice) {
+		noticeMapper.insert(notice);
+	}
+
+	
+
+	// 수정
+	public void update(Notice notice) {
+		noticeMapper.update(notice);
+	}
+
+	// 삭제
+	public void delete(int nno) {
+		noticeMapper.delete(nno);
+	}
 }

@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mybook.dto.BooksCategory;
 import com.mybook.dto.MemberDTO;
@@ -38,6 +41,13 @@ public class ProductCategoryController {
 		}else {
 			return "redirect:/";
 		}
+	}
+	
+	@PostMapping("insert")
+	@ResponseBody
+	public String insert(@RequestBody BooksCategory cate) {
+		cateservice.insert(cate);
+		return "success";
 	}
 	
 	

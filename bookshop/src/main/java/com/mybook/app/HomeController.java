@@ -68,10 +68,10 @@ public class HomeController {
 	//books 전체보기
 	@GetMapping("booklist/booklist")
 	public String booklist(Model model, String pageNum, String cateCode) {
-		pageNum = pageNum==null?"1":pageNum;
+		pageNum = ((pageNum==null)||(pageNum.equals("")))?"1":pageNum;
 		int page=Integer.parseInt(pageNum);
 		
-		cateCode = cateCode==null?"100":cateCode;
+		cateCode  = cateCode==null?null:cateCode;
 		
 		HashMap<String, Object> hm = new HashMap<>();
 		int cnt = pservice.getCount(hm);
@@ -99,10 +99,17 @@ public class HomeController {
 		hm.put("pageSize", pageSize);
 		hm.put("cateCode", cateCode);
 		
-		List<Books> lists = pservice.findAllwithPageNcate(hm);
+		List<Books> lists = pservice.findAll();
+		List<Books> listswithCate = pservice.findAllwithPageNcate(hm);
 		List<BooksCategory> catelists = cateservice.findAll();
 		//System.out.println(lists);
-		model.addAttribute("Booklist", lists);
+		
+		if((cateCode==null)||(cateCode.equals(""))) {
+			model.addAttribute("Booklist", lists);
+		}else {
+			model.addAttribute("Booklist", listswithCate);
+		}
+		
 		model.addAttribute("categorylist", catelists);
 		model.addAttribute("count", cnt);
 		model.addAttribute("pageDto",pageDto);

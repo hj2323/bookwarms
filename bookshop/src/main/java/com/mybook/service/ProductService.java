@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mybook.dto.Books;
-import com.mybook.dto.Qna;
 import com.mybook.repository.ProductRepository;
 
 @Service
