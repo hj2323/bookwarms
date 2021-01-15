@@ -19,7 +19,7 @@
           <a class="nav-link" href="/admin/a_member/a_member">회원관리</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/admin/a_stastistic/a_stastistic">통계</a>
+            <a class="nav-link" href="/admin/a_statistics/a_statistics">통계</a>
           </li>
        
       </ul>

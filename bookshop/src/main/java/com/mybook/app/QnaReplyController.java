@@ -30,18 +30,20 @@ public class QnaReplyController {
 	//占쏙옙占� 占쌩곤옙
 	@PostMapping("commentInsert")
 	@ResponseBody
-	public String insert(@RequestBody CommentDTO comment, HttpSession session) {//@RequestBody 占쏙옙 占쏙옙占쏙옙占쏙옙抉占쏙옙占� 占쌕울옙占쏙옙占� 占쏙옙占싱쏙옙 占쏙옙占승뤄옙 占쏙옙占쏙옙占쏙옙 占싼억옙쨈占�
+	public String insert(@RequestBody CommentDTO comment, HttpSession session) {
 		String userid = (String) session.getAttribute("sessid");
 		MemberDTO member = mservice.findById(userid);		
 		comment.setQreply_username(member.getUsername());
 		cservice.insert(comment);
-		System.out.println(comment);
-		return "success";//占쏙옙占쏙옙 占쏙옙트占쏙옙占쏙옙 占썰를 占쏙옙占� 占쏙옙占쏙옙占쏙옙 ResponseBody占쏙옙 占쌕울옙占쌍댐옙 占쏙옙占싱댐옙. 
+		//System.out.println(comment);
+		return "success";
 	}
 	
 	@GetMapping("commentList")
 	public List<CommentDTO> list(int q_no) {
+		
 		List<CommentDTO> clist = cservice.getList(q_no);
+		System.out.println("clist : " + clist);
 		return clist;
 	}
 	

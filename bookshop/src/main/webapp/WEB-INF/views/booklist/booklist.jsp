@@ -19,7 +19,7 @@
 			<c:forEach items="${categorylist}" var="cate">
 
 				<li class="nav-item"><a class="nav-link active"
-					href="/booklist/booklist?cateCode=${cate.cateCode}&pageNum="${pageNum}">${cate.cateName}(${cate.cateCode})</a></li>
+					href="/booklist/booklist?cateCode=${cate.cateCode}&pageNum="${pageNum}">${cate.cateName}</a></li>
 
 
 			</c:forEach>
@@ -27,7 +27,6 @@
 
 
 
-		</li>
 	</ul>
 	<table class="table">
 		<thead>
@@ -40,37 +39,44 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${Booklist}" var="book">
+			<form action="/order/order" method="get">
+			<input type="hidden" value="${book.book_id}" name="book_id">
 				<tr>
 					<td><img
-						src="https://images.unsplash.com/photo-1549122728-f519709caa9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80"
+						src="${book.book_Img }"
 						width="300px;"></td>
 					<td><div style="font-size: 25px;">${book.book_title }</div>
-						<div>${book.book_author }저</div>
+						<div>${book.book_author } 저</div>
 						<hr>
 
 
 						<div style="color: #888; font-size: 16px;">
-							판매가 <span style="color: #ff6666; font-size: 26px;">${book.book_price}
+							판매가 <span style="color: #ff6666; font-size: 26px;">
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${book.book_price}" />
+							
 							</span>원
 						</div></td>
 
 					<td><ul class="list-group">
-							<input type="hidden" id="bookid" value="${book.book_id }">
 							<li class="list-group-item">수량
 								<div class="form-group">
 
-									<input type="text" class="form-control" id="amount"
+									<input type="text" name="amount" class="form-control amount" 
 										style="width: 15%;">
 								</div>
 							</li>
-							<li class="list-group-item"><button type="button"
+							<li class="list-group-item">
+								<button type="button"
+									data-bookid="${book.book_id }" class="btn btn-light cartBtn"
+									>카트에 담기</button>
+								</li>
+							<li class="list-group-item"><button type="submit"
 									data-bookid="${book.book_id }" class="btn btn-light"
-									id="cartBtn">카트에 담기</button></li>
-							<li class="list-group-item"><button type="button"
-									data-bookid="${book.book_id }" class="btn btn-light"
-									id="orderBtn">바로구매</button></li>
-						</ul></td>
+									>바로구매</button></li>
+						</ul>
+					</td>
 				</tr>
+				</form>
 			</c:forEach>
 
 		</tbody>
@@ -106,18 +112,18 @@
 	</ul>
 </div>
 <script>
-	$("#cartBtn").click(function() {
-		alert("asdfas")
+	$(".cartBtn").click(function() {
+		//alert("asdfas")
 
-		var bookid_parent = $(this).parent();
-		var amount_parent = $(this).parent();
+		var bookinfo = $(this).parent().parent();
 		
-		var selectbookid = bookid_parent.children();
-		var selectamount = amount_parent.children().children().children();
+		var selectamount = $(this).parent().prev().children();
 
-		var bookid = selectbookid.eq(0).attr('value');//bookd_id값
-		var amount = selectamount.eq(0).attr('value');//amount값
+		var bookid = $(this).attr('data-bookid');//bookd_id값
 		
+		var amount = bookinfo.find('.amount').val();//amount값
+
+		//alert(amount+"ddd");
 		var data = {
 			"book_id" : bookid,
 			"amount" : amount
@@ -135,6 +141,8 @@
 		})
 
 	})
+	
+	
 </script>
 <%@include file="../includes/footer.jsp"%>
 </body>

@@ -37,8 +37,8 @@ public class CartRepository {
 			return cartMapper.findbyUserid(userid);
 		}
 
-		public List<Cart> findByCartid(int cart_id) {
-			// TODO Auto-generated method stub
+		public Cart findByCartid(int cart_id) {
+			System.out.println(cartMapper.findByCartid(cart_id));
 			return cartMapper.findByCartid(cart_id);
 		}
 }

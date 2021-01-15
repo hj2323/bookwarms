@@ -8,4 +8,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="list" resultType="com.mybook.dto.Notice">
 select * from notice;
 </select>
+
+<!-- index전체보기 -->
+<select id="listIndex" resultType="com.mybook.dto.Notice">
+select * from notice order by nno desc limit 0,3;
+</select>
+<!-- 카테고리별로 전체보기 -->
+<select id="findAllwithPage" parameterType="java.util.Map" resultType="com.mybook.dto.Notice">
+select * from notice
+order by nno desc
+limit #{startRow}, #{pageSize}
+
+<!-- limit [시작행번호],[가지고올 글갯수] -->
+</select>
+
+
+<select id="getCount" parameterType="java.util.Map" resultType="Integer">
+select count(*) from notice
+</select >
+<!-- 추가하기 -->
+<insert id="insert">
+insert into notice(n_subject, n_content, n_filename, n_regdate, n_hit)
+ values(#{n_subject},#{n_content},#{n_filename},now(), #{n_hit})
+</insert>
+<!-- findById -->
+<select id="findById" parameterType="Integer" resultType="com.mybook.dto.Notice">
+select * from notice
+where nno=#{nno}
+</select >
+
+<!-- 수정하기 -->
+<update id="update">
+update notice set n_subject=#{n_subject}, n_writer=#{n_writer},
+n_filename=#{n_filename}
+where nno=#{nno}
+</update>
+
+<!-- 삭제하기 -->
+<delete id="delete">
+delete from notice where nno=#{nno}
+</delete>
+
+<!-- hitcountUpdate -->
+<update id="hitcountUpdate" parameterType="Integer">
+update notice set n_hit = n_hit + 1
+where nno = #{nno}
+</update>
+
+
 </mapper>

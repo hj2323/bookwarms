@@ -45,9 +45,9 @@
        </tr>
       </table>
      <div class="btn-group">
-						<button type="submit" class="btn btn-default">수정하기</button>
+						<button type="submit" class="btn btn-warning">수정하기</button>
 						 <input type="button"
-			class="btn btn-default" id="btnDelete" value=" 삭제하기">
+			class="btn btn-danger" id="btnDelete" value=" 삭제하기">
 					</div>
 				</form>
     </div>

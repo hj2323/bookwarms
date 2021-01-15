@@ -30,13 +30,18 @@ public class OrderRepository {
 	}
 
 	// 주문취소
-	public void delete(int order_id) {
+	public void delete(String order_id) {
 		orderMapper.delete(order_id);
 	}
 
-	public List<Order> findById(int cart_id) {
-		// TODO Auto-generated method stub
-		return orderMapper.findById(cart_id);
+	public Order findById(String order_id) {
+		
+		return orderMapper.findById(order_id);
+	}
+
+	public List<Order> orderList(String userid) {
+		
+		return orderMapper.orderList(userid);
 	}
 }
 

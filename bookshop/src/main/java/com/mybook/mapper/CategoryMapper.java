@@ -8,7 +8,8 @@ import com.mybook.dto.MemberDTO;
 public interface CategoryMapper {
 	//상품카테고리 전체보기
 	List<BooksCategory> findAll();
-
-	void insert(BooksCategory cate);
-
+	//추가
+	public void insert(BooksCategory cate);
+	//삭제
+	public void delete(String cateCode);
 }

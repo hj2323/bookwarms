@@ -14,5 +14,7 @@ public class Cart {
 	private String book_title;
 	private String book_author;
 	private int book_price;
+	private String thumbImg;
+	
 	
 }

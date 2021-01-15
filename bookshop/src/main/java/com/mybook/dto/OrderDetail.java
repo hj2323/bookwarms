@@ -1,8 +1,11 @@
 package com.mybook.dto;
 
+import lombok.Data;
+
+@Data
 public class OrderDetail {
 	private int order_detail_no;
-	private int order_id;
+	private String order_id;
 	private int book_id;
-	private int cart_stock;
+	private int amount;
 }

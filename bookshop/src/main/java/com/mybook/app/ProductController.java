@@ -93,30 +93,9 @@ public class ProductController {
 	}
 	
 	@GetMapping("a_product_insert")
-	public String a_product_insert(Model model, Books book, MultipartFile file, HttpSession session) {
+	public String a_product_insert(Model model, Books book, HttpSession session) {
 		String sessid = (String) session.getAttribute("sessid");
 		if("admin".equals(sessid)) {
-			String imgUploadPath = uploadPath + File.separator + "imgUpload";
-			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
-			String fileName = null;
-			
-			if(file != null) {
-				try {
-					fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}else {
-				fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
-			}
-			
-			book.setBook_Img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-			book.setThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName );
 			
 			List<BooksCategory> catelists = cateservice.findAll();
 			model.addAttribute("categorylist", catelists);
@@ -150,7 +129,28 @@ public class ProductController {
 //		return "redirect:/board/list";
 //	}
 	@PostMapping("insert")
-	public String insert(Books book, RedirectAttributes rttr) {
+	public String insert(Books book, MultipartFile file) {
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+		
+		if(file != null) {
+			try {
+				fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else {
+			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+		
+		book.setBook_Img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		book.setThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName );
 		
 
 		pservice.insert(book);
@@ -174,8 +174,32 @@ public class ProductController {
 		}
 	}
 	@PostMapping("update")
-	public String update(@ModelAttribute Books book) {
-		System.out.println(book.getBook_releaseDate());
+	public String update(@ModelAttribute Books book, MultipartFile file) {
+		//System.out.println(book.getBook_releaseDate());
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+		
+		if(file != null) {
+			try {
+				fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else {
+			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+		
+		book.setBook_Img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		book.setThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName );
+		
+
+		
 		pservice.update(book);
 		return "redirect:/admin/a_product/a_product";
 	}

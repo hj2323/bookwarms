@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>â¨Bookwarms</title>
+<title>✨Bookwarms</title>
  <%--head영역 --%>
 <%@include file="../../includes/header.jsp"%>
       
@@ -16,7 +17,6 @@
 <%@include file="../nav.jsp"%>
     <div class="col-sm-8">
       <h2>Q&A 게시판 관리</h2>
-      <h5>Title description, Dec 7, 2017</h5>
       <table class="table table-bordered">
         <thead>
          <tr>
@@ -38,8 +38,9 @@
 						<td><fmt:formatDate value="${qna.q_regdate}" pattern="yyyy.MM.dd"/></td>
 						<td>
 							<div class="checkbox">
-							<input type="checkbox" value="" name="categorys">
-							<button type="button" class="btn btn-warning btn-xs">수정</button>
+							<input type="checkbox" value="" name="categorys" class="chBox" 	data-qno="${qna.q_no }">
+							
+							<button type="button" class="btn btn-warning btn-xs" onclick="location.href='/qna/qna_update?q_no=${qna.q_no}'">수정</button>
 							</div>
 							
 						</td>
@@ -48,7 +49,7 @@
 					<tr>
 						<td colspan="4"></td>
 						<td>
-							<button type="button" class="btn btn-danger">선택삭제</button>
+							<button type="button" class="btn btn-danger" id="selectDelete_btn">선택삭제</button>
 						</td>
 					</tr>
         </tbody>
@@ -115,6 +116,30 @@ boxes.change(function () {
   $cateAll.prop('checked', selectAll);
 
 });
+$("#selectDelete_btn").click(function(){
+	var confirm_val = confirm("정말 삭제하시겠습니까?");
+	if(confirm_val){
+		var checkArr = new Array();
+
+		$("input[class='chBox']:checked ").each(function(){
+			checkArr.push($(this).attr("data-qno"));
+		});
+
+		$.ajax({
+			url:"/admin/a_qna/delete",
+			type:"post",
+			data:{chbox : checkArr},
+			success: function(result){
+
+				if(result==1){
+				location.href="/admin/a_qna/a_qna";
+				}else{
+					location.href="/admin/a_qna/a_qna";
+				}	
+			}
+		})
+	}
+})
 </script>
 <%@include file="../../includes/footer.jsp"%>
 

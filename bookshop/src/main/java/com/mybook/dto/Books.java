@@ -22,7 +22,11 @@ public class Books {
 	//아우터 조인 할때 써서 추가해줌
 	private String cateName;
 	
-	private String ThumbImg;
+	//통계차트
+	private int numberOfBooks;
+	
+	private int orderCnt;
+	private String thumbImg;
 	
 	
 	

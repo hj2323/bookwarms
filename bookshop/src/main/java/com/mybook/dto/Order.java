@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 @Data
 public class Order {
-	private int order_id;
+	private String order_id;
 	private String userid;
 	private String order_rec;
 	private int address1;
@@ -13,7 +13,11 @@ public class Order {
 	private String order_phone;
 	private int amount;
 	private int order_price;
-	private String order_paymethod;
+	private String order_payment;
 	private Date order_regdate;
+	private String order_ask;
 	
+	
+	private String book_title;
+	private String thumbImg;
 }

@@ -20,5 +20,8 @@ public class CategoryService {
 		categoryRepository.insert(cate);
 		
 	}
+	public void delete(String cateCode) {
+		categoryRepository.delete(cateCode);
+	}
 
 }

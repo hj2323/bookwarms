@@ -9,5 +9,8 @@ select * from books_category
 <insert id="insert">
 insert into books_category(cateName, cateCode) values(#{cateName}, #{cateCode})
 </insert>
-
+<!-- 삭제하기 -->
+<delete id="delete">
+delete from books_category where cateCode=#{cateCode}
+</delete>
 </mapper>

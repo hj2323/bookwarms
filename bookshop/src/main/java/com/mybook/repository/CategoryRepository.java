@@ -22,5 +22,9 @@ public class CategoryRepository {
 		categoryMapper.insert(cate);
 		
 	}
+	
+	public void delete(String cateCode) {
+		categoryMapper.delete(cateCode);
+	}
 
 }

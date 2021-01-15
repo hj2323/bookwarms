@@ -41,5 +41,13 @@ public class QnaRepository {
 		qnaMapper.delete(q_no);
 		
 	}
+
+	public List<MemberDTO> myqna(HashMap<String, Object> hm) {
+		return qnaMapper.myqna(hm);
+	}
+
+	public int mypageGetCount(HashMap<String, Object> hm) {
+		return qnaMapper.mypageGetCount(hm);
+	}
 	
 }

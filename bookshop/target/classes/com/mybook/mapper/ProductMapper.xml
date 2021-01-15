@@ -3,32 +3,64 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybook.mapper.ProductMapper">
+<sql id = "search">
+<where>
+	<if test="word!=null and field=='username'">
+		username like CONCAT ('%',#{word},'%')
+	</if>
+	<if test="word!=null and field=='userid'">
+		userid like CONCAT ('%',#{word},'%')
+	</if>
+</where>
+
+</sql>
+
+
 <!-- 상품추가하기 -->
 <insert id="insert">
-insert into books(book_title, book_author, cateCode, book_releaseDate, book_price, book_description, book_Img, ThumbImg)
- values(#{book_title},#{book_author},#{cateCode},#{book_releaseDate}, #{book_price}, #{book_description}, #{book_Img}, #{ThumbImg})
+insert into books(book_title, book_author, cateCode, book_releaseDate, book_price, book_description, book_Img, thumbImg)
+ values(#{book_title},#{book_author},#{cateCode},#{book_releaseDate}, #{book_price}, #{book_description}, #{book_Img}, #{thumbImg})
 </insert>
+<!-- bestseller -->
+<select id="bestseller"  resultType="com.mybook.dto.Books">
+select * from books
+order by orderCnt desc
+limit 0, 10
+</select>
+
 <!-- 상품전체보기 -->
-<select id="findAll" resultType="com.mybook.dto.Books">
-select B.book_id, B.book_title, B.book_author, B.book_releaseDate, B.cateCode ,B.book_price, B.book_description , BC.cateName
+<select id="findAll"  resultType="com.mybook.dto.Books">
+select B.book_Img, B.ThumbImg, B.book_id, B.book_title, B.book_author, B.book_releaseDate, B.cateCode ,B.book_price, B.book_description , BC.cateName
 from books B left outer join books_category BC on ( B.cateCode = BC.cateCode)
 order by B.book_id desc
+
 </select>
 
 <!-- 상품전체보기(페이징추가) -->
 <select id="findAllwithPage" parameterType="java.util.Map" resultType="com.mybook.dto.Books">
-select B.book_id, B.book_title, B.book_author, B.book_releaseDate, B.cateCode ,B.book_price, B.book_description , BC.cateName
+select B.book_id, B.book_title, B.book_author, B.book_releaseDate, B.cateCode ,B.book_price, B.book_description , BC.cateName, B.thumbImg, BC.cateName
 from books B left outer join books_category BC on ( B.cateCode = BC.cateCode)
 order by B.book_id desc
+limit #{startRow}, #{pageSize}
+<!-- limit [시작행번호],[가지고올 글갯수] -->
+</select>
+<!-- 상품전체보기(검색바) -->
+<select id="findAllSearch" parameterType="java.util.Map" resultType="com.mybook.dto.Books">
+select B.book_id, B.book_title, B.book_author, B.book_releaseDate, B.cateCode ,B.book_price, B.book_description ,
+ BC.cateName, B.thumbImg, BC.cateName, B.book_Img
+from books B left outer join books_category BC on ( B.cateCode = BC.cateCode)
+where B.book_title like CONCAT ('%',#{search},'%')
+order by B.book_id desc 
 limit #{startRow}, #{pageSize}
 <!-- limit [시작행번호],[가지고올 글갯수] -->
 </select>
 
 <!-- 카테고리별로 상품전체보기 -->
 <select id="findAllwithPageNcate" parameterType="java.util.Map" resultType="com.mybook.dto.Books">
-select B.book_id, B.book_title, B.book_author, B.book_releaseDate, B.cateCode ,B.book_price, B.book_description , BC.cateName
+select B.book_id, B.book_title, B.book_author, B.book_releaseDate, B.cateCode ,B.book_price, 
+B.book_description , B.book_Img, B.thumbImg, BC.cateName
 from books B left outer join books_category BC on ( B.cateCode = BC.cateCode)
-where B.cateCode=#{cateCode}
+where B.cateCode=#{cateCode} 
 order by B.book_id desc
 limit #{startRow}, #{pageSize}
 
@@ -39,6 +71,12 @@ limit #{startRow}, #{pageSize}
 <select id="getCount" parameterType="java.util.Map" resultType="Integer">
 select count(*) from books
 </select >
+
+<select id="cateCount" resultType="com.mybook.dto.Books">
+select count(*) numberOfBooks, BC.cateName
+from books B left outer join books_category BC on ( B.cateCode = BC.cateCode)
+group by BC.cateCode
+</select>
 
 <select id="findById" resultType="com.mybook.dto.Books">
 select B.book_id, B.book_title, B.book_author, B.book_releaseDate, B.cateCode, 
@@ -52,7 +90,8 @@ from books B left outer join books_category BC on ( B.cateCode = BC.cateCode)
 update books set book_title=#{book_title}, book_author=#{book_author},
 book_releaseDate=#{book_releaseDate},
 cateCode=#{cateCode}, book_price=#{book_price},
-book_description=#{book_description}
+book_description=#{book_description},book_Img=#{book_Img},
+thumbImg=#{thumbImg}
 where book_id=#{book_id}
 
 </update>
@@ -61,4 +100,10 @@ where book_id=#{book_id}
 <delete id="delete">
 delete from books where book_id=#{book_id}
 </delete>
+
+<!-- updateOrderCnt -->
+<update id="updateOrderCnt">
+update books set orderCnt = orderCnt +#{amount}
+where book_id = #{book_id}
+</update>
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mybook.dto.BooksCategory;
@@ -50,6 +51,17 @@ public class ProductCategoryController {
 		return "success";
 	}
 	
-	
+	@PostMapping("delete")
+	@ResponseBody
+	public int delete(@RequestParam(value = "chbox[]")List<String> chArr) {
+		int result = 0;
+		String cateCode = null;
+		for(String i : chArr) {
+			cateCode = i;
+			cateservice.delete(cateCode);
+		}
+		result=1;
+		return result;
+	}
 	
 }

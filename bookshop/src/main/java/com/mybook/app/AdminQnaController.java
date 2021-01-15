@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mybook.dto.MemberDTO;
 import com.mybook.dto.PageDTO;
@@ -70,5 +73,17 @@ public class AdminQnaController {
 		}else {
 			return "redirect:/";
 		}
+	}
+	@PostMapping("delete")
+	@ResponseBody
+	public int delete(@RequestParam(value = "chbox[]")List<String> chArr) {
+		int result = 0;
+		int q_no = 0;
+		for(String i : chArr) {
+			q_no = Integer.parseInt(i);
+			qservice.delete(q_no);
+		}
+		result=1;
+		return result;
 	}
 }

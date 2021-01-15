@@ -41,29 +41,32 @@
 		</tbody>
 	</table>
 	<hr>
-	<button type="button" class="btn btn-primary">목록으로</button>
+	<button type="button" class="btn btn-primary" onclick="location.href='/qna/qna'">목록으로</button>
 	
-	<c:if text="${(sessionScope.sessid == qna.q_writer) or (sessionScope.sessid == 'admin')}">
+	<c:if test="${(sessionScope.sessid == qna.q_writer) or (sessionScope.sessid == 'admin')}">
 	<button type="button"
 		onclick="location.href='/qna/qna_update?q_no=${qna.q_no}'"
 		class="btn btn-primary">수정하기</button>
-	</c:if>
+	
 	
 	<button type="button" class="btn btn-primary" id="btnDelete">삭제하기</button>
+	</c:if>
 	<hr>
+	<c:choose>
+			<c:when test="${sessionScope.sessid == 'admin'}">
 	<h4>댓글쓰기</h4>
 	<div class="form-group">
 		<label for="comment">Comment:</label>
 		<textarea class="form-control" rows="5" id="msg" name="qreply_content"></textarea>
-		<c:choose>
-			<c:when test="${empty sessionScope.sessid}">
-				<!-- 세션이 없을때 -->
-				<span class="lg">로그인이후에 댓글쓰기가 가능합니다.</span>
-			</c:when>
-			<c:otherwise>
-				<!-- 세션이 있을때 -->
+		
+				<!-- 관리자 로그인 했을때 -->
 				<input type="button" class="btn btn-primary" value="댓글쓰기"
 					id="commentBtn">
+			</c:when>
+			<c:otherwise>
+			<!-- 관리자가 아닐때 -->
+				
+				
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -79,6 +82,7 @@
 
 		})
 		.done(function(resp){
+			alert(resp);
 			var htmlStr="";
 			//댓글개수 구현하고 싶을때 해주기
 			//$("#replycount").html("("+resp.count+")");
@@ -91,7 +95,7 @@
 				htmlStr += "<div class='panel-group'>"
 				htmlStr += "<div class='panel panel-default'>"
 				htmlStr += "<div class='panel-body'>"
-				htmlStr += "<b>작성자</b> " +val.qreply_username+"	&nbsp;&nbsp;<b>내용</b> " + val.qreply_content+"	&nbsp;&nbsp;<b>작성일</b>" +val.qreply_regdate
+				htmlStr += "<b>작성자</b> 관리자	&nbsp;&nbsp;<b>내용</b> " + val.qreply_content+"	&nbsp;&nbsp;<b>작성일</b>" +val.qreply_regdate
 				//data를 사용하면 내가 마치 태그를 하나 만들는 것처럼 사용 가능
 				htmlStr += "<a data-qreply_no="+val.qreply_no+">del&nbsp;x</a><hr>";
 				htmlStr += "</div>"

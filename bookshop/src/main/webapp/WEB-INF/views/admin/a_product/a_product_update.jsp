@@ -17,7 +17,7 @@
 		<div class="col-sm-8">
 			<h2>상품수정</h2>
 			<div class="table-responsive">
-			<form action="update" method="post">
+			<form action="update" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="book_id" value="${book.book_id }">
 				<table class="table">
 
@@ -52,13 +52,8 @@
 					</tr>
 					<tr>
 						<td>가격(원)</td>
-						<td><input type="text" class="form-control" id="usr" name="book_price" value="${book.book_price}"></td>
-						<td>책이미지 파일업로드</td>
-						<td><div class="custom-file">
-								<input type="file" class="custom-file-input" id="customFile">
-								<label class="custom-file-label" for="customFile">Choose
-									file</label>
-							</div></td>
+						<td colspan="3"><input type="text" class="form-control" id="usr" name="book_price" value="${book.book_price}"></td>
+						
 
 					</tr>
 					<tr>
@@ -67,7 +62,31 @@
 								id="comment" name="book_description">${book.book_description}</textarea></td>
 
 					</tr>
-
+					<tr>
+						<td>책이미지 파일업로드</td>
+						<td colspan="3"><div class="custom-file">
+								<input type="file" class="custom-file-input" id="customFile" name='file'>
+								<label class="custom-file-label" for="customFile">Choose
+									file</label>
+							</div>
+							<div class="select_img"><img src=""/></div>
+							
+							<script>
+							$("#customFile").change(function(){
+								if(this.files && this.files[0]){
+									var reader = new FileReader;
+									reader.onload = function(data){
+										$(".select_img img").attr("src", data.target.result).width(500);
+									}
+									reader.readAsDataURL(this.files[0]);
+								}
+							})
+						</script>
+						
+						</div>
+							
+							</td>
+					</tr>
 
 
 				</table>

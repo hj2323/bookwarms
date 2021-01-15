@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>â¨Bookwarms</title>
+ <title>✨Bookwarms</title>
 <%--head영역 --%>
 <%@include file="../../includes/header.jsp"%>
 
@@ -15,7 +15,6 @@
 		<%@include file="../nav.jsp"%>
 		<div class="col-sm-8">
 			<h2>상품카테고리관리</h2>
-      <h5>Title description, Dec 7, 2017</h5>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -34,7 +33,7 @@
 						<td>${category.cateCode}</td>
 						<td>
 							<div class="checkbox">
-							<input type="checkbox" value="" name="categorys">
+							<input type="checkbox" value="" class="chBox" name="categorys" data-cateCode="${category.cateCode }">
 							
 							</div>
 							
@@ -44,7 +43,7 @@
 					<tr>
 						<td colspan="2"></td>
 						<td>
-							<button type="button" class="btn btn-danger">선택삭제</button>
+							<button type="button" class="btn btn-danger" id="selectDelete_btn">선택삭제</button>
 						</td>
 					</tr>
 					<tr>
@@ -121,6 +120,31 @@ boxes.change(function () {
 			})
 
 	});
+	$("#selectDelete_btn").click(function(){
+		var confirm_val = confirm("정말 삭제하시겠습니까?");
+		if(confirm_val){
+			var checkArr = new Array();
+
+			$("input[class='chBox']:checked ").each(function(){
+				checkArr.push($(this).attr("data-cateCode"));
+			});
+
+			$.ajax({
+				url:"/admin/a_productcategory/delete",
+				type:"post",
+				data:{chbox : checkArr},
+				success: function(result){
+
+					if(result==1){
+					location.href="/admin/a_productcategory/a_productcategory";
+					}else{
+						
+						location.href="/admin/a_productcategory/a_productcategory";
+					}	
+				}
+			})
+		}
+	})
 </script>
 
 <%@include file="../../includes/footer.jsp"%>

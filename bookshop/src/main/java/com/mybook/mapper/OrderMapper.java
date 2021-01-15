@@ -15,7 +15,9 @@ public interface OrderMapper {
 	public void update(Order order);
 
 	// 주문취소
-	public void delete(int order_id);
+	public void delete(String order_id);
 	
-	public List<Order> findById(int cart_id);
+	public Order findById(String order_id);
+	// 나의 주문 목록
+	public List<Order> orderList(String userid);
 }

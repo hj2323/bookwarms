@@ -30,7 +30,6 @@ public class CartController {
 	public String cart(HttpSession session, Model model) {
 		String userid = (String) session.getAttribute("sessid");
 		List<Cart> lists = cartservice.findAll(userid);
-		//System.out.println(lists+"hgfhg");
 		model.addAttribute("cartlist", lists);
 		
 		
@@ -40,23 +39,29 @@ public class CartController {
 	@PostMapping("insert")
 	@ResponseBody
 	public String insert(@RequestBody Cart cart,  HttpSession session) {
+		System.out.println(cart);
 		String userid = (String) session.getAttribute("sessid");
 		cart.setUserid(userid);
 		
-		
-		//같은 book_id가 db에 이미 있는지 찾는 부분
-//		int book_id = cart.getBook_id();
+		//같은 userid가 장바구니에 넣은 책이 db에 이미 있는지 찾는 부분
+//		int book_id = cart.getBook_id();//view에서 넘어온 객체의 book_id값
+//		System.out.println(book_id);
+//		//로그인한 이이디의 장바구니에 있는 모든 책 가져오기
 //		List<Cart> cartWithUserid = cartservice.findbyUserid(userid);
-//		for(Cart cart_userid: cartWithUserid) {
-//			if(cart_userid.getBook_id().equals(book_id){
-//				cartservice.update(cart);
-//			}else{
-//				cartservice.insert(cart);
+//		System.out.println(cartWithUserid);
+//		
+//		if(cartWithUserid==null) {//로그인한 아이디의 장바구니에 책이 없으면
+//			cartservice.insert(cart);
+//		}else {//로그인한 아이디의 장바구니에 책이 있으면
+//			for(Cart cart_userid: cartWithUserid) {
+//				if(cart_userid.getBook_id()==(book_id)){
+//					cartservice.update(cart);
+//				}else{
+//					
+//				}
 //			}
 //		}
-		
 		cartservice.insert(cart);
-		
 		//System.out.println(cart);
 		return "success";
 	}

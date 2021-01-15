@@ -11,7 +11,7 @@ insert into cart(userid, book_id, amount)
 
 <!-- 상품전체보기 -->
 <select id="findAll" resultType="com.mybook.dto.Cart">
-select b.book_title, b.book_author, b.book_price, c.amount, c.cart_id 
+select b.book_title, b.book_author, b.book_price, b.thumbImg, c.amount, c.cart_id 
 from cart c join books b on (c.book_id=b.book_id)
 where c.userid=#{userid}
 </select>
@@ -21,14 +21,16 @@ where c.userid=#{userid}
 select * from cart where userid=#{userid}
 </select>
 
-<!-- findbyUserid -->
-<select id="findbyCartid" parameterType="Integer" resultType="com.mybook.dto.Cart">
-select * from cart where cart_id=#{cart_id}
+<!-- findByCartid -->
+<select id="findByCartid" parameterType="Integer" resultType="com.mybook.dto.Cart">
+select b.book_title, b.book_price, b.thumbImg, c.amount, c.cart_id 
+from cart c join books b on (c.book_id=b.book_id)
+where c.cart_id=#{cart_id}
 </select>
 
 <!-- 상품수정하기 -->
 <update id="update">
-update cart set amount=#{amount}
+update cart set amount= amount + #{amount}
 where cart_id=#{cart_id}
 </update>
 
@@ -36,4 +38,5 @@ where cart_id=#{cart_id}
 <delete id="delete">
 delete from cart where cart_id=#{cart_id}
 </delete>
+
 </mapper>

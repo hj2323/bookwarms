@@ -51,25 +51,26 @@
 <body>
 
 	<ul class="nav justify-content-end bg-light">
+		
 		<c:choose>
-			
+				
 			<c:when test="${sessionScope.sessid=='admin'}">
-			
-				<li class="nav-item"><a class="nav-link" href="/cart/cart">장바구니</a></li>
+				<li>🛠<span style="color:red;">관리자</span>로 로그인 했습니다.</li>
 				<li class="nav-item"><a class="nav-link"
-					href="/admin/a_notice/a_notice">관리자 페이지</a></li>
+					href="/admin/a_notice/a_notice">관리자 페이지👨‍🔧</a></li>
 				<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a>
 				</li>
 			</c:when>
 			<c:when test="${sessionScope.sessid!=null}">
-			
-				<li class="nav-item"><a class="nav-link" href="/cart/cart">장바구니</a></li>
+				<li>📣<b>${sessionScope.sessid }</b>(으)로 로그인 했습니다.</li>
+				<li class="nav-item"><a class="nav-link" href="/cart/cart">장바구니🛒</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="/mypage/myaccount/myaccount">마이 페이지</a></li>
+					href="/mypage/myaccount">마이 페이지🙍‍♂️‍</a></li>
 				<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a>
 				</li>
 			</c:when>
 			<c:otherwise>
+			
 				<li class="nav-item"><a class="nav-link" href="/member/signup">회원가입</a></li>
 				<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
 			</c:otherwise>
@@ -82,17 +83,21 @@
 		<h1>Welcome to BookWarms!🦉</h1>
 		<p>🎊책을 좋아하는 사람들을 위한 인터넷 서점 북웜즈에 오신것을 환영합니다!🎊</p>
 		<p>찾고 싶은 책을 검색해보세요!</p>
+		<form action="/booklist/booklist" method="get">
 		<div class="container" style="display: flex;">
+		
 			<div class="form-group"
 				style="width: 600px; display: relative; margin: 0 5px 0 100px;">
-				<input type="text" class="form-control" id="usr">
+				<input type="text" class="form-control" id="usr" name="search">
 			</div>
 			<div>
-				<button type="button" class="btn btn-secondary">검색</button>
+				<button type="submit" class="btn btn-secondary">검색</button>
 			</div>
+		
 		</div>
+		</form>
 	</div>
-	</div>
+	
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<a class="navbar-brand" href="/">✨Bookwarms</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"

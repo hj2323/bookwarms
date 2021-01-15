@@ -33,8 +33,8 @@ public class CartService {
 			// TODO Auto-generated method stub
 			return cartRepository.findbyUserid(userid);
 		}
-		public List<Cart> findByCartid(int cart_id) {
-			// TODO Auto-generated method stub
+		public Cart findByCartid(int cart_id) {
+			//System.out.println(cartRepository.findByCartid(cart_id));
 			return cartRepository.findByCartid(cart_id);
 		}
 }

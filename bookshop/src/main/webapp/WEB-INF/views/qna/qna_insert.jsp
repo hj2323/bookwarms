@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>â¨Bookwarms</title>
-<script src="/resources/ckeditor/ckeditor.js"></script>
+  <title>✨Bookwarms</title>
+
 <%--head영역 --%>
 <%@include file="../includes/header.jsp"%>
 
@@ -30,6 +30,7 @@
 							<textarea class="form-control" rows="5" id="comment"
 								name="q_content" placeholder="문의사항을 입력해주세요">
 								</textarea>
+
 						</div>
 					</td>
 

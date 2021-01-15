@@ -14,7 +14,7 @@
 <%@include file="../nav.jsp"%>
     <div class="col-sm-8">
       <h2>회원관리</h2>
-      <h5>회원 추가, 회원정보수정, 회원 강제 탈퇴가 가능한 페이지 입니다.</h5>
+      <h5>회원정보수정, 회원 강제 탈퇴가 가능한 페이지 입니다.</h5>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -73,7 +73,7 @@
 						<input type="text" class="form-control" id="word"
 							placeholder="검색어를 입력해 주세요" name="word">
 					</div>
-					<button type="submit" class="btn btn-default" value="검색">검색</button>
+					<button type="submit" class="btn btn-secondary" value="검색">검색</button>
 				</form>
     </div>
   </div>

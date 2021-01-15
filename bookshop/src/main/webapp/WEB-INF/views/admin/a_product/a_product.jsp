@@ -7,49 +7,9 @@
 <title>✨Bookwarms</title>
   <script   src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <style>
-  .uploadResult {
-  width:100%;
-  background-color: gray;
-}
-.uploadResult ul{
-  display:flex;
-  flex-flow: row;
-  justify-content: center;
-  align-items: center;
-}
-.uploadResult ul li {
-  list-style: none;
-  padding: 10px;
-  align-content: center;
-  text-align: center;
-}
-.uploadResult ul li img{
-  width: 100px;
-}
-.uploadResult ul li span {
-  color:white;
-}
-.bigPictureWrapper {
-  position: absolute;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  top:0%;
-  width:100%;
-  height:100%;
-  background-color: gray; 
-  z-index: 100;
-  background:rgba(255,255,255,0.5);
-}
-.bigPicture {
-  position: relative;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.bigPicture img {
-  width:600px;
+.thumbImg {
+  width:200px;
 }
   </style>
 <%--head영역 --%>
@@ -76,7 +36,7 @@
 						<th>출간일</th>
 						<th>카테고리분류넘버</th>
 						<th>카테고리</th>
-						<th>첨부파일</th>
+						<th>책이미지</th>
 						<th>
 							<div class="checkbox">
 								전체선택<input type="checkbox" id="cateAll" value="">
@@ -95,10 +55,7 @@
 							<td>${book.cateCode}</td>
 							<td>${book.cateName}</td>
 							<td>
-								<div class='uploadResult'>
-									<ul>
-									</ul>
-								</div>
+								<img src="${book.thumbImg}" class="thumbImg"/>
 							</td>
 							<td>
 								<div class="checkbox">
@@ -205,9 +162,9 @@ $("#selectDelete_btn").click(function(){
 			success: function(result){
 
 				if(result==1){
-				location.href="/admin/a_product/a_product";
+					location.href="/admin/a_product/a_product";
 				}else{
-					alert("삭제 실패")
+					location.href="/admin/a_product/a_product";
 				}	
 			}
 		})

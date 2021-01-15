@@ -14,10 +14,12 @@ public interface CartMapper {
 	// 상품수정
 	public void update(Cart cart);
 
-	// 상품삭제
+	// 카트비우기
 	public void delete(int cart_id);
 
 	public List<Cart> findbyUserid(String userid);
 
-	public List<Cart> findByCartid(int cart_id);
+	public Cart findByCartid(int cart_id);
+
+	
 }

@@ -34,7 +34,7 @@ public class ProductRepository {
 	public void delete(int book_id) {
 		productMapper.delete(book_id);
 	}
-
+	//카운트
 	public int getCount(HashMap<String, Object> hm) {
 		return productMapper.getCount(hm);
 	}
@@ -50,4 +50,21 @@ public class ProductRepository {
 	public List<Books> findAllwithPageNcate(HashMap<String, Object> hm) {
 		return productMapper.findAllwithPageNcate(hm);
 	}
+
+	public List<Books> findAllSearch(HashMap<String, Object> hm) {
+		
+		return productMapper.findAllSearch(hm);
+	}
+
+	public List<Books> cateCount() {
+		// TODO Auto-generated method stub
+		return productMapper.cateCount();
+	}
+
+	public List<Books> bestseller() {
+		// TODO Auto-generated method stub
+		return productMapper.bestseller();
+	}
+
+
 }

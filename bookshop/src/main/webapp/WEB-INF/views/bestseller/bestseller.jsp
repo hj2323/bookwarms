@@ -22,51 +22,29 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><img src="https://images.unsplash.com/photo-1549122728-f519709caa9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80" width="300px;"></td>
-            <td>책이름<br>저자<br>가격</td>
-            
-            <td><ul class="list-group">
-                <li class="list-group-item">수량<div class="form-group">
-                    <input type="text" class="form-control" id="usr" style="width:10%;">
-                  </div></li>
-                <li class="list-group-item">카트에 담기</li>
-                <li class="list-group-item">바로구매</li>
-              </ul></td>
-          </tr>
-          <tr>
-            <td><img src="https://images.unsplash.com/photo-1549122728-f519709caa9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80" width="300px;"></td>
-            <td>책이름<br>저자<br>가격</td>
-            
-            <td><ul class="list-group">
-                <li class="list-group-item">수량<div class="form-group">
-                    <input type="text" class="form-control" id="usr" style="width:10%;">
-                  </div></li>
-                <li class="list-group-item">카트에 담기</li>
-                <li class="list-group-item">바로구매</li>
-              </ul></td>
-          </tr>
-          <tr>
-            <td><img src="https://images.unsplash.com/photo-1549122728-f519709caa9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1525&q=80" width="300px;"></td>
-            <td>책이름<br>저자<br>가격</td>
-            
-            <td><ul class="list-group">
-                <li class="list-group-item">수량<div class="form-group">
-                    <input type="text" class="form-control" id="usr" style="width:10%;">
-                  </div></li>
-                <li class="list-group-item">카트에 담기</li>
-                <li class="list-group-item">바로구매</li>
-              </ul></td>
-          </tr>
+         <c:forEach items="${Booklist}" var="book">
+			<form action="/order/order" method="get">
+			<input type="hidden" value="${book.book_id}" name="book_id">
+				<tr>
+					<td><img src="${book.book_Img }"
+						width="150px;"></td>
+					<td><div style="font-size: 25px;">${book.book_title }</div>
+						<div>${book.book_author } 저</div>
+						<hr>
+
+
+						<div style="color: #777; font-size: 16px;">
+							판매지수 🏷${book.orderCnt }
+						</div>
+					</td>
+
+					
+				</tr>
+				</form>
+			</c:forEach>
         </tbody>
       </table>
-      <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul>
+      
 </div>
 
 <%@include file="../includes/footer.jsp"%>

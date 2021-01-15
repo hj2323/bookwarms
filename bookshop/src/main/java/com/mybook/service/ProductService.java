@@ -46,7 +46,19 @@ public class ProductService {
 	}
 	//카테고리별로 상품전체보기
 	public List<Books> findAllwithPageNcate(HashMap<String, Object> hm) {
-		// TODO Auto-generated method stub
+		
 		return productRepository.findAllwithPageNcate(hm);
+	}
+	public List<Books> findAllSearch(HashMap<String, Object> hm) {
+		
+		return productRepository.findAllSearch(hm);
+	}
+	public List<Books> cateCount() {
+		// TODO Auto-generated method stub
+		return productRepository.cateCount();
+	}
+	public List<Books> bestseller() {
+		// TODO Auto-generated method stub
+		return productRepository.bestseller();
 	}
 }

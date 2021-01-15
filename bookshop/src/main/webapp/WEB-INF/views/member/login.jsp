@@ -48,7 +48,7 @@
 				//아이디 오류--->회원가입으로
 			}else if(resp=="fail"){
 				alert("You're not a member. Please sign up.");
-				location.href="/member/join";
+				location.href="/member/signup";
 				//아이디는 맞지만 비번 오류
 			}else{
 				alert("Please check your password.");

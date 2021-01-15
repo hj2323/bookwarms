@@ -10,8 +10,8 @@ import lombok.Data;
 public class Notice {
 	private int nno;
 	private String n_subject;
-	private String n_writer;
+	private String n_content;
 	private MultipartFile n_filename;
-	private Date regdate;
+	private Date n_regdate;
 	private int n_hit;
 }

@@ -23,4 +23,8 @@ public interface QnaMapper {
 	//replyCnt개수 증가
 	public void updateReplyCnt(@Param("q_no")int q_no, @Param("amount") int amount);
 	
+	//마이페이지
+	public List<MemberDTO> myqna(HashMap<String, Object> hm);
+	public int mypageGetCount(HashMap<String, Object> hm);
+	
 }

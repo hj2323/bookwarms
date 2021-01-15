@@ -17,6 +17,20 @@ select * from qna order by q_no desc
 limit #{startRow}, #{pageSize}
 <!-- limit [시작행번호],[가지고올 글갯수] -->
 </select  >
+
+<select id="myqna" parameterType="java.util.Map" resultType="com.mybook.dto.Qna">
+select * from qna 
+where q_writer= #{q_writer}
+order by q_no desc
+limit #{startRow}, #{pageSize}
+<!-- limit [시작행번호],[가지고올 글갯수] -->
+</select  >
+
+<select id="mypageGetCount" parameterType="java.util.Map" resultType="Integer">
+select count(*) from qna
+where q_writer= #{q_writer}
+</select >
+
 <select id="findByQno" resultType="com.mybook.dto.Qna">
 select * from qna where q_no=#{q_no}
 </select>

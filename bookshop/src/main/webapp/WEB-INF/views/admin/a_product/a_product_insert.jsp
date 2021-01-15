@@ -18,7 +18,7 @@
 		<div class="col-sm-8">
 			<h2>상품추가</h2>
 			<div class="table-responsive">
-			<form action="insert" method="post">
+			<form action="insert" method="post" enctype="multipart/form-data">
 				<table class="table">
 
 					<tr>
@@ -82,7 +82,7 @@
 								}
 							})
 						</script>
-						<%=request.getRealPath("/") %>
+						<%--=request.getRealPath("/") --%>
 						</div>
 						</td>
 					
