@@ -87,6 +87,7 @@
 			//댓글개수 구현하고 싶을때 해주기
 			//$("#replycount").html("("+resp.count+")");
 			$.each(resp, function(key,val){
+				
 				//htmlStr += "No. " +(val.cnum)+"<br>"
 				//htmlStr += "작성자:" +val.userid+"<br>"
 				//htmlStr += "내용:" + val.content+"<br>"

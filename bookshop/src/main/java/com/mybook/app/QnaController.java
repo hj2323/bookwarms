@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mybook.dto.CommentDTO;
 import com.mybook.dto.MemberDTO;
 import com.mybook.dto.PageDTO;
 import com.mybook.dto.Qna;
+import com.mybook.service.CommentService;
 import com.mybook.service.QnaService;
 
 @RequestMapping("/qna/*")
@@ -30,6 +32,8 @@ import com.mybook.service.QnaService;
 public class QnaController {
 	@Autowired
 	private QnaService qservice;
+	@Autowired
+	private CommentService cservice;
 	
 	@GetMapping("qna")
 	public String qna(Model model,String pageNum) {
@@ -90,6 +94,9 @@ public class QnaController {
 	public String view( int q_no, Model model) {
 		Qna qna = qservice.findByQno(q_no);
 		model.addAttribute("qna",qna);
+		
+		List<CommentDTO> clist = cservice.getList(q_no);
+		model.addAttribute("clist", clist);
 		return "/qna/qna_view";
 	}
 	@GetMapping("qna_update")

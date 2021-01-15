@@ -55,6 +55,11 @@
             <td>(${order.address1}) ${order.address2}</td>
             
           </tr>
+            <tr>
+            <td><b>결제방식</b></td>
+            <td>${order.order_payment}</td>
+            
+          </tr>
            <tr>
             <td><b>배송시 유의사항</b></td>
             <td>${order.order_ask}</td>

@@ -14,4 +14,5 @@ public class Notice {
 	private MultipartFile n_filename;
 	private Date n_regdate;
 	private int n_hit;
+	
 }

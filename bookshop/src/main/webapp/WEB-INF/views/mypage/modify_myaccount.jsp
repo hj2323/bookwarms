@@ -30,21 +30,21 @@
       </div>
       <div class="form-group">
         <label for="usr">이름:</label>
-        <input type="text" class="form-control" id="usr" name="username"  value="${member.userid }">
+        <input type="text" class="form-control" id="usr" name="username"  value="${member.username }">
       </div>
       <div class="form-group">
         <label for="usr">email:</label>
-        <input type="text" class="form-control" id="usr" name="useremail"  value="${member.userid }">
+        <input type="text" class="form-control" id="usr" name="useremail"  value="${member.useremail }">
         
       </div>
       <div class="form-group">
         <label for="usr">주소:</label> <button type="button" class="btn btn-outline-dark btn-sm">우편번호검색</button>
-        <input type="text" class="form-control" id="usr" disabled name="address1"  value="${member.userid }">
-        <input type="text" class="form-control" id="usr" name="address2"  value="${member.userid }">
+        <input type="text" class="form-control" id="usr" disabled name="address1"  value="${member.address1 }">
+        <input type="text" class="form-control" id="usr" name="address2"  value="${member.address2 }">
       </div>
       <div class="form-group">
         <label for="usr">전화번호:</label>
-        <input type="text" class="form-control" id="usr" name="tel"  value="${member.userid }">
+        <input type="text" class="form-control" id="usr" name="tel"  value="${member.tel }">
         <p>"-"를 뺸 형식으로 입력해주세요 예)01012345678</p>
       </div>
 <button type="submit" class="btn btn-warning">수정</button>

@@ -29,7 +29,7 @@
          <tr>
            <td colspan="4"><div class="form-group">
 							<textarea class="form-control" rows="5" id="comment"
-								name="q_content" value="${qna.q_content}"></textarea>
+								name="q_content">${qna.q_content}</textarea>
 						</div></td>
            
          </tr>

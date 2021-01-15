@@ -39,7 +39,7 @@ where nno=#{nno}
 
 <!-- 수정하기 -->
 <update id="update">
-update notice set n_subject=#{n_subject}, n_writer=#{n_writer},
+update notice set n_subject=#{n_subject}, n_content=#{n_content},
 n_filename=#{n_filename}
 where nno=#{nno}
 </update>

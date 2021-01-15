@@ -126,7 +126,7 @@ public class MyPageController {
 	 	 	
 	 	 	 
 	 	 	String sessid = (String) session.getAttribute("sessid");
-	 	 	 System.out.println(order_id);
+	 	 	
 	 	 	 Order order = orderservice.findById(order_id);
 	 	 	 
 	 	 	 model.addAttribute("order", order);

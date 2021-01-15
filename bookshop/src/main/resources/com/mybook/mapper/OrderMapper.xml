@@ -15,15 +15,12 @@ select * from tbl_order
 </select>
 
 <select id="findById" resultType="com.mybook.dto.Order">
-select O.order_id, O.order_rec, O.address1, O.address2, O.order_phone, O.order_price, O.order_ask, O.order_regdate, OD.book_id, OD.amount,
+select O.order_id, O.order_rec, O.address1, O.address2, O.order_phone, O.order_price, O.order_payment, O.order_ask, O.order_regdate, OD.book_id, OD.amount,
 B.book_title, B.thumbImg 
 from order_detail OD join tbl_order O on(O.order_id = OD.order_id)
 join Books B on(B.book_id = OD.book_id)
  where O.order_id=#{order_id}
 </select>
-
-
-
 
 <!-- 주문취소하기 -->
 <delete id="delete">
